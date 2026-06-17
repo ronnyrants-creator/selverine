@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merci pour votre commande — SELVERINE</title>
+  <meta name="description" content="Votre commande SELVERINE a bien été enregistrée. Notre équipe vous contacte sous 2 heures." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/index.html" class="nav__logo">SELVERINE</a>
+      <nav class="nav__links">
+        <a href="/index.html#ritual">Rituel</a>
+        <a href="/index.html#ingredients">Ingrédients</a>
+        <a href="/index.html#avis">Avis</a>
+      </nav>
+      <a href="/index.html#form" class="btn btn--sm btn--dark nav__order-btn">Commander</a>
+      <button class="nav__hamburger" id="navHamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="thankyou-page">
+    <div class="thankyou-layout">
+
+      <div class="thankyou-panel thankyou-panel--brand">
+        <div class="thankyou-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Commande confirmée
+        </div>
+        <h1>Merci, <em id="thankyouName">vous</em>.</h1>
+        <p class="thankyou-lead" id="thankyouMessage">
+          Votre commande est bien enregistrée. Gardez votre téléphone à portée de main — notre équipe vous appelle très vite pour finaliser tout ça.
+        </p>
+        <dl class="thankyou-order-box">
+          <dt>Référence</dt>
+          <dd id="thankyouRef">—</dd>
+          <dt>Offre</dt>
+          <dd id="thankyouBundle">—</dd>
+          <dt>Total à la livraison</dt>
+          <dd id="thankyouTotal"><strong>—</strong></dd>
+        </dl>
+      </div>
+
+      <div class="thankyou-panel thankyou-panel--steps">
+        <h2 class="thankyou-steps-title">Ce qu'il reste à faire</h2>
+        <p class="thankyou-steps-sub">Votre routine capillaire est presque entre vos mains. Voici exactement ce qui se passe maintenant.</p>
+
+        <ol class="thankyou-timeline">
+          <li class="is-current">
+            <div class="thankyou-timeline__num">1</div>
+            <div class="thankyou-timeline__body">
+              <h3>Attendez notre appel</h3>
+              <p>Un conseiller SELVERINE vous contacte sous <strong>2 heures</strong> (jours ouvrés) pour confirmer votre nom, ville et l'offre choisie.</p>
+              <span class="thankyou-timeline__tag">En cours — gardez votre téléphone allumé</span>
+            </div>
+          </li>
+          <li>
+            <div class="thankyou-timeline__num">2</div>
+            <div class="thankyou-timeline__body">
+              <h3>Validation &amp; préparation</h3>
+              <p>Après confirmation, votre colis est préparé et expédié sous <strong>24 à 48 heures</strong> partout au Maroc.</p>
+            </div>
+          </li>
+          <li>
+            <div class="thankyou-timeline__num">3</div>
+            <div class="thankyou-timeline__body">
+              <h3>Réception &amp; paiement</h3>
+              <p>Le livreur vous appelle avant de passer. Vous vérifiez le colis et payez en <strong>espèces uniquement</strong> — aucune carte requise.</p>
+            </div>
+          </li>
+          <li>
+            <div class="thankyou-timeline__num">4</div>
+            <div class="thankyou-timeline__body">
+              <h3>Commencez votre rituel</h3>
+              <p>4 à 6 gouttes chaque matin sur le cuir chevelu. Les premiers résultats se voient généralement entre la <strong>3ème et la 8ème semaine</strong>.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="thankyou-actions">
+          <a href="/index.html#ritual" class="btn btn--dark btn--lg">Voir comment l'utiliser</a>
+          <a href="/index.html" class="btn btn--ghost btn--lg">Retour à l'accueil</a>
+        </div>
+        <p class="thankyou-note">Une question avant l'appel ? Écrivez-nous à <a href="mailto:contact@selverine.com">contact@selverine.com</a></p>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const p = new URLSearchParams(window.location.search);
+      const stored = sessionStorage.getItem('selverine_order');
+      const data = stored ? JSON.parse(stored) : {};
+      const name   = p.get('name')   || data.name   || '';
+      const ref    = p.get('ref')    || data.ref    || '';
+      const total  = p.get('total')  || data.total  || '';
+      const bundle = p.get('bundle') || data.bundle || '';
+
+      if (name) document.getElementById('thankyouName').textContent = name;
+      if (ref)  document.getElementById('thankyouRef').textContent = ref;
+      if (bundle) document.getElementById('thankyouBundle').textContent = bundle;
+      if (total) document.getElementById('thankyouTotal').innerHTML = '<strong>' + total + ' DH</strong> · paiement à la livraison';
+    })();
+  </script>
+  <script src="/pages.js"></script>
+</body>
+</html>

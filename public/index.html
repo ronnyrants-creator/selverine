@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SELVERINE — Laboratoire Capillaire Premium</title>
+  <meta name="description" content="SELVERINE — Le rituel quotidien du cuir chevelu conçu pour les femmes exigeantes. Science, élégance, efficacité." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <!-- ─── STICKY NAV ─────────────────────────────────────────── -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">SELVERINE</a>
+      <nav class="nav__links">
+        <a href="#ritual">Rituel</a>
+        <a href="#ingredients">Ingrédients</a>
+        <a href="#avis">Avis</a>
+      </nav>
+      <a href="#form" class="btn btn--sm btn--dark nav__order-btn" data-order>Commander</a>
+      <button class="nav__hamburger" id="navHamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─── STICKY PURCHASE BAR ───────────────────────────────── -->
+  <div class="sticky-bar" id="stickyBar">
+    <div class="sticky-bar__inner">
+      <div class="sticky-bar__left">
+        <span class="sticky-bar__label">SELVERINE ★★★★★ · 3 500+ femmes satisfaites</span>
+        <span class="sticky-bar__sub">Paiement à la livraison · Garantie 90 jours (Cure Complète)</span>
+      </div>
+      <div class="sticky-bar__actions">
+        <span class="sticky-bar__price">429 DH</span>
+        <a href="#form" class="sticky-bar__cta" id="stickyBarCta" data-order>
+          Commander maintenant →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ANNOUNCE BAR ────────────────────────────────────────── -->
+  <div class="announce-bar">
+    <span>✦ 3 500+ Marocaines satisfaites</span>
+    <span class="announce-sep">·</span>
+    <span>✦ Paiement à la livraison</span>
+    <span class="announce-sep">·</span>
+    <span>✦ Garantie 90 jours — Cure Complète</span>
+  </div>
+
+  <!-- ─── S1 HERO ────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+
+      <!-- Mobile-only headline — sits above the image on phone -->
+      <h1 class="hero__headline hero__headline--top">
+        Arrêtez la chute.<br /><em>Relancez la repousse.</em>
+      </h1>
+
+      <!-- CONTENT LEFT — headline + offer selector -->
+      <div class="hero__content fade-up">
+        <div class="hero__rating">
+          <span class="hero__stars-line">★★★★★</span>
+          <span class="hero__rating-text">4.9/5 · <strong>3 500+</strong> avis confirmés · À partir de <strong>269 DH</strong></span>
+        </div>
+        <p class="eyebrow">Science du cuir chevelu · Résultats durables</p>
+        <h1 class="hero__headline hero__headline--desktop">
+          Votre cheveux ne réclame pas<br />des promesses.
+          <em>Elle réclame des<br />résultats.</em>
+        </h1>
+        <p class="hero__sub">
+          SELVERINE agit à la racine. Un soin scientifique qui renouvelle votre cuir chevelu,
+          arrête la chute et relance la repousse — sans résidu, sans faux espoirs.
+          Résultats visibles en 3 semaines.
+        </p>
+
+        <!-- Product feature chips -->
+        <div class="hero__features">
+          <div class="hero__feature-chip">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Non gras · Absorption rapide
+          </div>
+          <div class="hero__feature-chip">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Sans silicones · Sans parabènes
+          </div>
+          <div class="hero__feature-chip">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Testé dermatologiquement
+          </div>
+        </div>
+
+        <!-- Bundle selector -->
+        <div class="bundle-selector" id="heroBundle">
+          <p class="bundle-selector__label">Choisissez votre offre :</p>
+
+          <div class="bundle-option" data-bundle="1" data-price="269" data-name="Découverte" data-detail="1 bouteille · 269 DH">
+            <div class="bundle-option__row">
+              <div class="bundle-option__radio"></div>
+              <div class="bundle-option__info">
+                <span class="bundle-option__name">Découverte</span>
+                <span class="bundle-option__desc">1 bouteille · 6 à 8 semaines</span>
+              </div>
+              <div class="bundle-option__price">
+                <span class="bundle-option__amount">269 DH</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bundle-option bundle-option--active" data-bundle="2" data-price="429" data-name="Routine recommandée" data-detail="2 bouteilles · 429 DH · Économisez 109 DH">
+            <div class="bundle-option__top-badge">⭐ LE PLUS POPULAIRE</div>
+            <div class="bundle-option__row">
+              <div class="bundle-option__radio"></div>
+              <div class="bundle-option__info">
+                <span class="bundle-option__name">Routine recommandée</span>
+                <span class="bundle-option__desc">2 bouteilles · jusqu'à 4 mois</span>
+              </div>
+              <div class="bundle-option__price">
+                <span class="bundle-option__amount">429 DH</span>
+                <span class="bundle-option__savings">Économisez 109 DH</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bundle-option" data-bundle="3" data-price="549" data-name="Cure complète" data-detail="3 bouteilles · 549 DH · Économisez 258 DH">
+            <div class="bundle-option__top-badge bundle-option__top-badge--gold">🔥 MEILLEURE ÉCONOMIE</div>
+            <div class="bundle-option__row">
+              <div class="bundle-option__radio"></div>
+              <div class="bundle-option__info">
+                <span class="bundle-option__name">Cure complète</span>
+                <span class="bundle-option__desc">3 bouteilles · 90 jours · <strong style="color:#1A3D32">Garantie remboursement incluse</strong> — photo avant + utilisation complète</span>
+              </div>
+              <div class="bundle-option__price">
+                <span class="bundle-option__amount">549 DH</span>
+                <span class="bundle-option__savings">Économisez 258 DH</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary CTA -->
+        <a href="#form" class="btn btn--dark btn--xl hero-cta" id="heroCta" data-order>
+          Commencer ma routine · 429 DH →
+        </a>
+        <p class="hero__trust-line">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Paiement à la livraison · Aucune carte bancaire requise
+        </p>
+
+        <!-- Stats -->
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat-num">3 500+</span>
+            <span class="hero__stat-label">femmes satisfaites</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">4.9 ★</span>
+            <span class="hero__stat-label">note moyenne</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">8 sem.</span>
+            <span class="hero__stat-label">résultats visibles</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMAGE RIGHT — product visual + trust chips -->
+      <div class="hero__image">
+        <div class="img-frame img-frame--hero" data-ratio="4:5">
+          <img src="/images/hero.png" alt="SELVERINE — rituel capillaire premium" />
+        </div>
+        <!-- Trust chips below image -->
+        <div class="hero__trust-chips">
+          <div class="trust-chip">
+            <span class="trust-chip__value">COD</span>
+            <span class="trust-chip__label">Paiement livraison</span>
+          </div>
+          <div class="trust-chip">
+            <span class="trust-chip__value">✓</span>
+            <span class="trust-chip__label">Dermato-testé</span>
+          </div>
+          <div class="trust-chip">
+            <span class="trust-chip__value">90J</span>
+            <span class="trust-chip__label">Garantie résultats</span>
+          </div>
+          <div class="trust-chip">
+            <span class="trust-chip__value">60ml</span>
+            <span class="trust-chip__label">Par flacon</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── TRUST RIBBON ─────────────────────────────────────── -->
+  <section class="trust-ribbon">
+    <div class="container">
+      <div class="trust-ribbon__inner">
+        <div class="trust-ribbon__avatars">
+          <div class="trust-ribbon__avatar" style="background:#c8ddd5;color:#18382F">S</div>
+          <div class="trust-ribbon__avatar" style="background:#ddd5c8;color:#5a3e2b">I</div>
+          <div class="trust-ribbon__avatar" style="background:#d5c8e0;color:#3d2a5a">Z</div>
+          <div class="trust-ribbon__avatar" style="background:#c8d5e0;color:#1a3a52">N</div>
+          <div class="trust-ribbon__avatar" style="background:#e0d8c8;color:#5a4a1a">M</div>
+          <div class="trust-ribbon__avatar" style="background:#c8e0d5;color:#1a4a35">K</div>
+        </div>
+        <div class="trust-ribbon__text">
+          <span class="trust-ribbon__stars">★★★★★</span>
+          <span class="trust-ribbon__label">Plus de <strong>3 500</strong> clientes satisfaites au Maroc</span>
+        </div>
+        <div class="trust-ribbon__divider"></div>
+        <div class="trust-ribbon__badges">
+          <span>✓ Livraison offerte</span>
+          <span>✓ Paiement à la livraison</span>
+          <span>✓ Garantie résultats 90 jours</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LEAD FORM ──────────────────────────────────────────── -->
+  <section class="lead-form-section section-dark" id="form">
+    <div class="container">
+        <div class="lead-form__compact fade-up">
+        <p class="eyebrow eyebrow--light">Commander maintenant</p>
+        <h2 class="lead-form__headline">
+          Votre routine commence<br /><em>ici.</em>
+        </h2>
+      </div>
+      <div class="lead-form__sticky-wrap fade-up">
+      <div class="lead-form__bundle-summary" id="bundleSummary">
+        <div class="bundle-summary__left">
+          <span class="bundle-summary__icon">⭐</span>
+          <div>
+            <span class="bundle-summary__name" id="bundleSummaryName">Routine recommandée</span>
+            <span class="bundle-summary__detail" id="bundleSummaryDetail">2 bouteilles · 429 DH · Économisez 109 DH</span>
+          </div>
+        </div>
+        <a href="#offres" class="bundle-summary__change">Modifier</a>
+      </div>
+      <form class="lead-form__form" id="leadForm" novalidate>
+        <input type="hidden" id="bundleInput" name="bundle" value="2" />
+        <input type="hidden" id="priceInput" name="total" value="429" />
+        <div class="form-group">
+          <label for="fullname">Nom complet</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Votre prénom et nom" autocomplete="name" inputmode="text" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Téléphone</label>
+          <input type="tel" id="phone" name="phone" placeholder="06 00 00 00 00" autocomplete="tel" inputmode="tel" required />
+        </div>
+        <div class="form-group">
+          <label for="city">Ville</label>
+          <input type="text" id="city" name="city" placeholder="Votre ville" autocomplete="address-level2" inputmode="text" required />
+        </div>
+        <button type="submit" class="btn btn--gold btn--lg form-submit" id="formSubmitBtn">
+          Commander — 429 DH →
+        </button>
+        <div class="lead-form__trust-inline">
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            Livraison rapide
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Paiement à la livraison
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            Garantie 90 jours
+          </span>
+        </div>
+        <p class="form-note">Garantie Cure Complète : photo avant + 90 jours d'utilisation. Vos informations restent confidentielles.</p>
+      </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── S2 MOMENT ─────────────────────────────────────────── -->
+  <section class="moment section-beige" id="moment">
+    <div class="container">
+      <div class="moment__header fade-up">
+        <p class="eyebrow">Le signal d'alarme</p>
+        <h2 class="section-headline">
+          Quand se brosser les cheveux<br />devient une source de stress.
+        </h2>
+        <p class="section-body">
+          Vous regardez la brosse. Vous comptez les cheveux perdus.
+          Vous vérifiez vos tempes dans le miroir du matin.
+          Ce n'est pas de la coquetterie — c'est votre corps qui parle.
+        </p>
+      </div>
+      <div class="moment__image fade-in">
+        <div class="img-frame img-frame--square" data-ratio="1:1">
+          <img src="/images/moment.png" alt="Chute de cheveux — signal d'alarme" loading="lazy" decoding="async" />
+        </div>
+      </div>
+      <div class="pain-cards">
+        <div class="pain-card fade-up" data-delay="0">
+          <div class="pain-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#18382F" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Cheveux partout</h3>
+          <p>Sur l'oreiller, dans la douche, sur le siège de bureau. La quantité augmente sans raison apparente.</p>
+        </div>
+        <div class="pain-card fade-up" data-delay="100">
+          <div class="pain-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#18382F" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h3>Volume perdu</h3>
+          <p>La queue-de-cheval est plus fine. La chevelure manque de corps. Les coiffures d'autrefois ne tiennent plus.</p>
+        </div>
+        <div class="pain-card fade-up" data-delay="200">
+          <div class="pain-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#18382F" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+          </div>
+          <h3>Cuir chevelu visible</h3>
+          <p>La raie s'élargit. Vous changez votre façon de vous coiffer pour compenser ce que vous voyez.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── S3 ROOT CAUSE ──────────────────────────────────────── -->
+  <section class="rootcause section-white" id="science">
+    <div class="container">
+      <div class="rootcause__header fade-up" style="text-align:center;margin-bottom:4rem">
+        <p class="eyebrow">La Science du Cuir Chevelu</p>
+        <h2 class="section-headline">Tout commence <em>à la racine.</em></h2>
+        <p class="section-body" style="max-width:520px;margin:1rem auto 0">Le cuir chevelu est le sol de votre chevelure. Un sol appauvri donne naissance à des pousses fragiles. La plupart des soins traitent la fibre — SELVERINE traite la source.</p>
+      </div>
+      <!-- Graphic diagram -->
+      <div class="scalp-diagram fade-in">
+        <div class="scalp-diagram__track">
+          <div class="scalp-diagram__step scalp-diagram__step--bad fade-up" data-delay="0">
+            <div class="diagram-visual diagram-visual--bad">
+              <img src="/images/before.png" alt="Avant SELVERINE — cheveux fragilisés" class="diagram-photo" loading="lazy" decoding="async" />
+            </div>
+            <div class="diagram-label diagram-label--bad">
+              <span class="diagram-label__tag">Sans soin</span>
+              <h4>Cuir chevelu appauvri</h4>
+              <ul>
+                <li>Follicules fragilisés</li>
+                <li>Circulation réduite</li>
+                <li>Chute accélérée</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="scalp-diagram__arrow fade-up" data-delay="150">
+            <div class="diagram-arrow-line"></div>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" class="diagram-arrow-icon">
+              <circle cx="12" cy="12" r="11" fill="#18382F"/>
+              <path d="M8 12h8M14 9l3 3-3 3" stroke="#B99A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>SELVERINE</span>
+          </div>
+
+          <div class="scalp-diagram__step scalp-diagram__step--good fade-up" data-delay="300">
+            <div class="diagram-visual diagram-visual--good">
+              <img src="/images/after.png" alt="Avec SELVERINE — cheveux régénérés" class="diagram-photo" loading="lazy" decoding="async" />
+            </div>
+            <div class="diagram-label diagram-label--good">
+              <span class="diagram-label__tag">Avec SELVERINE</span>
+              <h4>Cuir chevelu régénéré</h4>
+              <ul>
+                <li>Follicules renforcés</li>
+                <li>Microcirculation activée</li>
+                <li>Repousse stimulée</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rootcause__steps">
+        <div class="rootcause__step fade-up" data-delay="0">
+          <span class="rootcause__step-num">01</span>
+          <div>
+            <strong>Cuir chevelu sain</strong>
+            <p>Circulation optimale, follicules nourris, production de sébum régulée.</p>
+          </div>
+        </div>
+        <div class="rootcause__step fade-up" data-delay="100">
+          <span class="rootcause__step-num">02</span>
+          <div>
+            <strong>Racines solides</strong>
+            <p>L'ancrage capillaire se renforce. Le cycle de croissance s'allonge naturellement.</p>
+          </div>
+        </div>
+        <div class="rootcause__step fade-up" data-delay="200">
+          <span class="rootcause__step-num">03</span>
+          <div>
+            <strong>Cheveux transformés</strong>
+            <p>Densité, brillance, et résistance — sans artifice, sans compromis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── S4 WHY SELVERINE ───────────────────────────────────── -->
+  <section class="why section-dark" id="pourquoi">
+    <div class="container container--narrow">
+      <div class="why__header fade-up">
+        <p class="eyebrow eyebrow--light">La Différence SELVERINE</p>
+        <h2 class="section-headline section-headline--light">
+          Un rituel conçu pour<br /><em>votre vie quotidienne.</em>
+        </h2>
+      </div>
+      <div class="why__bottle fade-in">
+        <div class="img-frame img-frame--product" data-ratio="3:4">
+          <img src="/images/product-cta.png" alt="Flacon SELVERINE — huile capillaire botanique" loading="lazy" decoding="async" />
+        </div>
+        <div class="why__orbit">
+          <div class="orbit-item orbit-item--1">
+            <div class="orbit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+            <span>Ingrédients premium</span>
+          </div>
+          <div class="orbit-item orbit-item--2">
+            <div class="orbit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <span>Rituel quotidien</span>
+          </div>
+          <div class="orbit-item orbit-item--3">
+            <div class="orbit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <span>Non gras</span>
+          </div>
+          <div class="orbit-item orbit-item--4">
+            <div class="orbit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <span>Tous types de cheveux</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── S6 PREMIUM INGREDIENTS ────────────────────────────── -->
+  <section class="ingredients section-white" id="ingredients">
+    <div class="container">
+      <div class="ingredients__header fade-up">
+        <p class="eyebrow">Formulation Premium</p>
+        <h2 class="section-headline">
+          Chaque ingrédient<br /><em>a une raison d'être.</em>
+        </h2>
+        <p class="section-body" style="max-width:520px;margin:0 auto">
+          Nous n'ajoutons rien pour remplir. Chaque composant est sélectionné
+          pour son efficacité clinique et sa compatibilité cuir chevelu.
+        </p>
+      </div>
+      <div class="ingredients__list">
+
+        <div class="ingredient-card fade-up">
+          <div class="ingredient-card__image">
+            <div class="img-frame img-frame--square" data-ratio="1:1">
+              <img src="/images/ingredient-jojoba.png" alt="Huile de Jojoba" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="ingredient-card__content">
+            <p class="eyebrow">Actif N°1</p>
+            <h3>Huile de Jojoba</h3>
+            <p class="ingredient-science">Mimétique du sébum naturel, elle régule la production de sébum et nourrit profondément le cuir chevelu sans obstruer les follicules pileux.</p>
+            <div class="ingredient-benefit">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Équilibre et nourrit sans alourdir
+            </div>
+          </div>
+        </div>
+
+        <div class="ingredient-card ingredient-card--reverse fade-up">
+          <div class="ingredient-card__content">
+            <p class="eyebrow">Actif N°2</p>
+            <h3>Huile d'Argan (Azir)</h3>
+            <p class="ingredient-science">L'or liquide du Maroc. Riche en vitamine E et acides gras essentiels, elle nourrit en profondeur, répare les pointes et redonne éclat et souplesse à la fibre capillaire.</p>
+            <div class="ingredient-benefit">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Répare, nourrit et redonne brillance
+            </div>
+          </div>
+          <div class="ingredient-card__image">
+            <div class="img-frame img-frame--square" data-ratio="1:1">
+              <img src="/images/ingredient-argan.png" alt="Huile d'Argan" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+
+        <div class="ingredient-card fade-up">
+          <div class="ingredient-card__image">
+            <div class="img-frame img-frame--square" data-ratio="1:1">
+              <img src="/images/ingredient-clove.png" alt="Huile de Clou de Girofle" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="ingredient-card__content">
+            <p class="eyebrow">Actif N°3</p>
+            <h3>Huile de Clou de Girofle (9ronfal)</h3>
+            <p class="ingredient-science">Puissant stimulant de la circulation sanguine, elle active les follicules pileux dormants et possède des propriétés antifongiques naturelles qui assainissent le cuir chevelu.</p>
+            <div class="ingredient-benefit">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Active la repousse et assainit le cuir chevelu
+            </div>
+          </div>
+        </div>
+
+        <div class="ingredient-card ingredient-card--reverse fade-up">
+          <div class="ingredient-card__content">
+            <p class="eyebrow">Actif N°4</p>
+            <h3>Ginseng (Jinsing)</h3>
+            <p class="ingredient-science">Adaptogène légendaire utilisé en médecine traditionnelle depuis des siècles. Le ginseng stimule la prolifération des cellules du cuir chevelu et prolonge la phase de croissance des cheveux.</p>
+            <div class="ingredient-benefit">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Prolonge la phase de croissance capillaire
+            </div>
+          </div>
+          <div class="ingredient-card__image">
+            <div class="img-frame img-frame--square" data-ratio="1:1">
+              <img src="/images/product-why.png" alt="Selverine au Ginseng" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── S7 HOW TO USE ──────────────────────────────────────── -->
+  <section class="ritual section-beige" id="ritual">
+    <div class="container">
+      <div class="ritual__header fade-up">
+        <p class="eyebrow">Mode d'Emploi</p>
+        <h2 class="section-headline">
+          Trois gestes.<br /><em>Soixante secondes.</em>
+        </h2>
+      </div>
+      <div class="ritual__cards">
+        <div class="ritual-card fade-up" data-delay="0">
+          <div class="img-frame img-frame--portrait" data-ratio="4:5">
+            <img src="/images/ritual-1.png" alt="Étape 1 — Appliquer SELVERINE" loading="lazy" decoding="async" />
+          </div>
+          <div class="ritual-card__content">
+            <span class="ritual-card__step">01</span>
+            <h3>Le matin, avant de partir</h3>
+            <p>Appliquez quelques gouttes directement sur le cuir chevelu sec ou légèrement humide.</p>
+          </div>
+        </div>
+        <div class="ritual-card fade-up" data-delay="150">
+          <div class="img-frame img-frame--portrait" data-ratio="4:5">
+            <img src="/images/ritual-2.png" alt="Étape 2 — Masser le cuir chevelu" loading="lazy" decoding="async" />
+          </div>
+          <div class="ritual-card__content">
+            <span class="ritual-card__step">02</span>
+            <h3>Massez doucement</h3>
+            <p>Effectuez des mouvements circulaires pendant 60 secondes pour activer la microcirculation.</p>
+          </div>
+        </div>
+        <div class="ritual-card fade-up" data-delay="300">
+          <div class="img-frame img-frame--portrait" data-ratio="4:5">
+            <img src="/images/ritual-3.png" alt="Résultat — Cheveux en pleine santé" loading="lazy" decoding="async" />
+          </div>
+          <div class="ritual-card__content">
+            <span class="ritual-card__step">03</span>
+            <h3>Laissez agir</h3>
+            <p>Aucun rinçage nécessaire. La formule ultra-légère est invisible et indétectable au toucher.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── S8 TESTIMONIALS ────────────────────────────────────── -->
+  <section class="testimonials section-white" id="avis">
+    <div class="container">
+      <div class="testimonials__header fade-up">
+        <p class="eyebrow">Elles témoignent</p>
+        <h2 class="section-headline">
+          Des femmes réelles.<br /><em>Des résultats réels.</em>
+        </h2>
+        <div class="testimonials__count fade-up">
+          <span class="count-num">3 500+</span>
+          <span class="count-label">femmes ont transformé leur routine capillaire avec SELVERINE</span>
+        </div>
+      </div>
+      <div class="testimonials__grid">
+
+        <div class="testimonial-card fade-up" data-delay="0">
+          <div class="testimonial-card__meta">
+            <div class="testimonial-card__portrait">
+              <img src="/images/reviews/review-1.jpg" alt="Yousra M." width="56" height="56" loading="lazy" />
+            </div>
+            <div>
+              <cite>Yousra M.</cite>
+              <span>Casablanca · Google</span>
+            </div>
+          </div>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <blockquote>"J'avais perdu du volume avec le stress du travail. Une collègue m'a conseillé SELVERINE — j'avoue j'étais sceptique. En 5 semaines ma raie est moins visible, et ça ne graisse pas le matin."</blockquote>
+        </div>
+
+        <div class="testimonial-card testimonial-card--featured fade-up" data-delay="100">
+          <div class="testimonial-card__meta">
+            <div class="testimonial-card__portrait">
+              <img src="/images/reviews/review-2.jpg" alt="Ghita M." width="56" height="56" loading="lazy" />
+            </div>
+            <div>
+              <cite>Ghita M.</cite>
+              <span>Rabat · Google</span>
+            </div>
+          </div>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <blockquote>"Je soigne mes cheveux sérieusement depuis 2 ans. C'est la première fois que je vois de petits cheveux repousser sur les tempes. Texture légère, odeur discrète — je valide."</blockquote>
+        </div>
+
+        <div class="testimonial-card fade-up" data-delay="200">
+          <div class="testimonial-card__meta">
+            <div class="testimonial-card__portrait">
+              <img src="/images/reviews/review-3.jpg" alt="Fadwa M." width="56" height="56" loading="lazy" />
+            </div>
+            <div>
+              <cite>Fadwa M.</cite>
+              <span>Marrakech · Google</span>
+            </div>
+          </div>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <blockquote>"Post-grossesse mes cheveux tombaient par poignées 😔 Le paiement à la livraison m'a rassurée pour tester. Maintenant c'est mon rituel du soir — 4 gouttes et c'est réglé."</blockquote>
+        </div>
+
+        <div class="testimonial-card fade-up" data-delay="0">
+          <div class="testimonial-card__meta">
+            <div class="testimonial-card__portrait">
+              <img src="/images/reviews/review-4.jpg" alt="Oumaima H." width="56" height="56" loading="lazy" />
+            </div>
+            <div>
+              <cite>Oumaima H.</cite>
+              <span>Tanger · Google</span>
+            </div>
+          </div>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <blockquote>"Cuir chevelu qui tirait, pellicules, chute... le combo gagnant. En 6 semaines c'est beaucoup plus calme. Je recommande la cure 3 flacons, au moins pour avoir le temps de voir."</blockquote>
+        </div>
+
+        <div class="testimonial-card testimonial-card--featured fade-up" data-delay="100">
+          <div class="testimonial-card__meta">
+            <div class="testimonial-card__portrait">
+              <img src="/images/reviews/review-5.jpg" alt="Zineb L." width="56" height="56" loading="lazy" />
+            </div>
+            <div>
+              <cite>Zineb L.</cite>
+              <span>Fès · Google</span>
+            </div>
+          </div>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <blockquote>"Ma mère utilisait des huiles maison, moi je voulais un truc propre et efficace. SELVERINE coche les deux cases. Mes cheveux ont retrouvé du corps, ma coiffeuse l'a remarqué avant moi."</blockquote>
+        </div>
+
+        <div class="testimonial-card fade-up" data-delay="200">
+          <div class="testimonial-card__meta">
+            <div class="testimonial-card__portrait">
+              <img src="/images/reviews/review-6.jpg" alt="Kenza S." width="56" height="56" loading="lazy" />
+            </div>
+            <div>
+              <cite>Kenza S.</cite>
+              <span>Agadir · Google</span>
+            </div>
+          </div>
+          <div class="testimonial-card__stars">★★★★★</div>
+          <blockquote>"Commandé un mardi soir, appelée le lendemain matin, colis reçu en 2 jours. Le service est aussi sérieux que le produit franchement. Hâte de finir ma cure complète."</blockquote>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── S9 RESULTS TIMELINE ────────────────────────────────── -->
+  <section class="results section-dark" id="resultats">
+    <div class="container container--narrow">
+      <div class="results__header fade-up">
+        <p class="eyebrow eyebrow--light">Le Parcours de Confiance</p>
+        <h2 class="section-headline section-headline--light">
+          Ce que vous ressentirez<br /><em>semaine après semaine.</em>
+        </h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline__line"></div>
+        <div class="timeline-item fade-up" data-delay="0">
+          <div class="timeline-item__marker"><span>Semaine 1</span></div>
+          <div class="timeline-item__content">
+            <div class="timeline-item__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 0 20"/><path d="M12 2a10 10 0 0 0 0 20"/><path d="M2 12h20"/><path d="M12 2c-2.76 3.56-4 7.56-4 10s1.24 6.44 4 10"/><path d="M12 2c2.76 3.56 4 7.56 4 10s-1.24 6.44-4 10"/></svg>
+            </div>
+            <h3>Le cuir chevelu respire</h3>
+            <p>Sensation de confort immédiate. Le cuir chevelu est apaisé, moins sensible. La routine s'installe naturellement.</p>
+          </div>
+        </div>
+        <div class="timeline-item fade-up" data-delay="150">
+          <div class="timeline-item__marker"><span>Semaine 3</span></div>
+          <div class="timeline-item__content">
+            <div class="timeline-item__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <h3>La chute ralentit</h3>
+            <p>Moins de cheveux dans la brosse. Moins sur l'oreiller. Le follicule se renforce, l'ancrage s'améliore.</p>
+          </div>
+        </div>
+        <div class="timeline-item fade-up" data-delay="300">
+          <div class="timeline-item__marker"><span>Semaine 8</span></div>
+          <div class="timeline-item__content">
+            <div class="timeline-item__icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h3>La confiance revient</h3>
+            <p>Densité visible. Volume retrouvé. Des petits cheveux courts — le signe que la repousse est active. Vous vous reconnaissez à nouveau dans le miroir.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── S11 TRUST ──────────────────────────────────────────── -->
+  <section class="trust-section section-beige" id="confiance">
+    <div class="container">
+      <div class="trust-section__header fade-up">
+        <p class="eyebrow">Nos Engagements</p>
+        <h2 class="section-headline">
+          La confiance ne s'annonce pas.<br /><em>Elle se prouve.</em>
+        </h2>
+      </div>
+      <div class="trust-cards trust-cards--5">
+        <div class="trust-card fade-up" data-delay="0">
+          <div class="trust-card__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#18382F" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3>Paiement Sécurisé</h3>
+          <p>Vos données sont protégées. Commandez en toute confiance.</p>
+        </div>
+        <div class="trust-card fade-up" data-delay="80">
+          <div class="trust-card__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#18382F" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h3>Paiement à la Livraison</h3>
+          <p>Aucune carte bancaire requise. Vous payez uniquement à réception.</p>
+        </div>
+        <div class="trust-card fade-up" data-delay="160">
+          <div class="trust-card__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#18382F" stroke-width="1.5"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3>Livraison Offerte</h3>
+          <p>Dès l'achat de 2 bouteilles. Livraison en 2–3 jours au Maroc.</p>
+        </div>
+        <div class="trust-card fade-up" data-delay="240">
+          <div class="trust-card__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#18382F" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h3>Support Client</h3>
+          <p>Notre équipe répond sous 24h à <a href="mailto:contact@selverine.com" style="color:var(--green)">contact@selverine.com</a></p>
+        </div>
+        <div class="trust-card fade-up" data-delay="320">
+          <div class="trust-card__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#18382F" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <h3>Garantie 90 Jours</h3>
+          <p>Aucun résultat après 90 jours ? Remboursement intégral — photo avant + utilisation quotidienne complète requises.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── S13 FAQ ────────────────────────────────────────────── -->
+  <section class="faq section-beige" id="faq">
+    <div class="container container--narrow">
+      <div class="faq__header fade-up">
+        <p class="eyebrow">Questions Fréquentes</p>
+        <h2 class="section-headline">
+          Tout ce que vous<br /><em>souhaitez savoir.</em>
+        </h2>
+      </div>
+      <div class="faq__list">
+        <div class="faq-item fade-up faq-item--open">
+          <button class="faq-item__question" aria-expanded="true">
+            <span>Pour quel type de chute de cheveux est-ce adapté ?</span>
+            <svg class="faq-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-item__answer">
+            <p>SELVERINE est conçu pour la chute réactionnelle — liée au stress, aux fluctuations hormonales, au post-partum, ou à la fatigue chronique. Pour les alopécies avancées, nous recommandons de consulter un dermatologue avant d'utiliser le produit.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up">
+          <button class="faq-item__question" aria-expanded="false">
+            <span>Combien de temps avant de voir des résultats ?</span>
+            <svg class="faq-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-item__answer">
+            <p>Les premières sensations (cuir chevelu apaisé, confort) sont immédiates. La réduction de la chute se manifeste généralement entre la 3ème et la 5ème semaine. Les résultats visibles sur la densité s'observent autour de la 8ème semaine d'utilisation continue.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up">
+          <button class="faq-item__question" aria-expanded="false">
+            <span>Est-ce qu'il rend les cheveux gras ?</span>
+            <svg class="faq-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-item__answer">
+            <p>Non. La formule SELVERINE a été spécifiquement optimisée pour une absorption rapide et une finition sèche. Elle est adaptée aux cheveux fins et aux cuirs chevelus à tendance grasse. Aucune trace, aucun film résiduel.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up">
+          <button class="faq-item__question" aria-expanded="false">
+            <span>Peut-on l'utiliser enceinte ou allaitante ?</span>
+            <svg class="faq-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-item__answer">
+            <p>Par précaution, nous recommandons de consulter votre médecin ou sage-femme avant d'utiliser SELVERINE pendant la grossesse. La formule ne contient aucun perturbateur endocrinien connu, mais chaque situation médicale est unique.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up">
+          <button class="faq-item__question" aria-expanded="false">
+            <span>Il semble qu'il n'y ait aucun résultat — que faire ?</span>
+            <svg class="faq-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-item__answer">
+            <p>Pas de panique — c'est exactement pour cela que nous avons créé notre garantie résultats. Si après 90 jours vous ne constatez aucune amélioration, nous vous remboursons intégralement. Deux conditions simples :<br /><br />
+            <strong>1. Une photo de vous avant de commencer</strong> — une photo claire du cuir chevelu ou de la raie, prise le premier jour d'utilisation.<br />
+            <strong>2. 90 jours d'utilisation complète</strong> — le produit doit avoir été appliqué chaque jour pendant toute la durée de la cure.<br /><br />
+            C'est pour cette raison que la garantie est incluse uniquement dans l'offre <strong>Cure Complète</strong> (3 bouteilles · 90 jours). Cette offre vous donne le temps nécessaire pour observer de vrais résultats.</p>
+          </div>
+        </div>
+        <div class="faq-item fade-up">
+          <button class="faq-item__question" aria-expanded="false">
+            <span>Combien de temps dure un flacon ?</span>
+            <svg class="faq-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-item__answer">
+            <p>Un flacon de 60ml dure en moyenne 6 à 8 semaines avec une utilisation quotidienne (4 à 6 gouttes par application). Nous recommandons de commencer par une cure de 3 mois pour des résultats durables.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── S14 FINAL CTA ──────────────────────────────────────── -->
+  <section class="cta-final section-dark" id="acheter">
+    <div class="container container--narrow">
+      <div class="cta-final__inner">
+        <div class="cta-final__product">
+          <div class="img-frame img-frame--product-lg" data-ratio="3:4">
+            <img src="/images/product-cta.png" alt="Flacon SELVERINE" loading="lazy" decoding="async" />
+          </div>
+        </div>
+        <div class="cta-final__content fade-up">
+          <p class="eyebrow eyebrow--light">Le Rituel Commence Ici</p>
+          <h2 class="cta-final__headline">
+            Le soin commence<br /><em>à la racine.</em>
+          </h2>
+          <p class="cta-final__sub">
+            Rejoignez plus de 3 500 femmes qui ont retrouvé confiance
+            en leur chevelure avec SELVERINE.
+          </p>
+          <div class="cta-final__offer">
+            <div class="offer-price">
+              <span class="offer-price__amount">429 DH</span>
+              <span class="offer-price__unit">· 2 bouteilles · Livraison offerte</span>
+            </div>
+            <div class="offer-badge">⭐ L'offre la plus populaire</div>
+          </div>
+          <a href="#form" class="btn btn--light btn--xl" data-order>Commencer ma routine →</a>
+          <div class="cta-trust-row">
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Paiement sécurisé</span>
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Livraison en 2–3 jours</span>
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Garantie résultats 90 jours</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <span class="footer__logo">SELVERINE</span>
+          <p class="footer__tagline">Laboratoire Capillaire Premium.<br />Conçu pour les femmes exigeantes.</p>
+          <div class="footer__socials">
+            <a href="#" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            </a>
+            <a href="#" aria-label="TikTok">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer__nav">
+          <div class="footer__col">
+            <h4>Produit</h4>
+            <a href="#pourquoi">Pourquoi SELVERINE</a>
+            <a href="#ingredients">Ingrédients</a>
+            <a href="#ritual">Rituel</a>
+            <a href="#resultats">Résultats</a>
+          </div>
+          <div class="footer__col">
+            <h4>Service</h4>
+            <a href="/livraison.html">Livraison</a>
+            <a href="/retours.html">Retours</a>
+            <a href="#faq">FAQ</a>
+            <a href="mailto:contact@selverine.com">Contact</a>
+          </div>
+          <div class="footer__col">
+            <h4>Informations</h4>
+            <a href="#">À propos</a>
+            <a href="/mentions-legales.html">Mentions légales</a>
+            <a href="/confidentialite.html">Confidentialité</a>
+            <a href="/cgv.html">CGV</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 SELVERINE. Tous droits réservés.</p>
+        <p class="footer__made">Formulé avec soin pour vous.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── ORDER POPUP MODAL ─────────────────────────────────── -->
+  <div class="order-modal" id="orderModal" aria-hidden="true">
+    <div class="order-modal__overlay" data-close></div>
+    <div class="order-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle">
+      <button class="order-modal__close" type="button" aria-label="Fermer" data-close>&times;</button>
+
+      <div class="order-modal__head">
+        <p class="eyebrow">Commande sécurisée</p>
+        <h2 class="order-modal__title" id="orderModalTitle">Finalisez votre routine</h2>
+        <p class="order-modal__sub">Vous payez à la livraison — aucune carte bancaire requise.</p>
+      </div>
+
+      <div class="order-modal__bundles" id="modalBundles">
+        <button type="button" class="m-bundle" data-bundle="1" data-price="269">
+          <span class="m-bundle__check"></span>
+          <span class="m-bundle__info">
+            <span class="m-bundle__name">Découverte</span>
+            <span class="m-bundle__desc">1 flacon · 6 à 8 semaines</span>
+          </span>
+          <span class="m-bundle__price">269 DH</span>
+        </button>
+        <button type="button" class="m-bundle m-bundle--active" data-bundle="2" data-price="429">
+          <span class="m-bundle__badge">Le plus choisi</span>
+          <span class="m-bundle__check"></span>
+          <span class="m-bundle__info">
+            <span class="m-bundle__name">Routine recommandée</span>
+            <span class="m-bundle__desc">2 flacons · jusqu'à 4 mois</span>
+          </span>
+          <span class="m-bundle__price">429 DH<small>Économisez 109 DH</small></span>
+        </button>
+        <button type="button" class="m-bundle" data-bundle="3" data-price="549">
+          <span class="m-bundle__badge m-bundle__badge--best">Meilleure valeur</span>
+          <span class="m-bundle__check"></span>
+          <span class="m-bundle__info">
+            <span class="m-bundle__name">Cure complète</span>
+            <span class="m-bundle__desc">3 flacons · 90 jours · garantie incluse</span>
+          </span>
+          <span class="m-bundle__price">549 DH<small>Économisez 258 DH</small></span>
+        </button>
+      </div>
+
+      <form class="order-modal__form" id="orderForm" novalidate>
+        <input type="hidden" id="mBundleInput" name="bundle" value="2" />
+        <input type="hidden" id="mPriceInput" name="total" value="429" />
+        <div class="form-group">
+          <label for="mName">Nom complet</label>
+          <input type="text" id="mName" name="fullname" placeholder="Votre prénom et nom" autocomplete="name" required />
+        </div>
+        <div class="form-group">
+          <label for="mPhone">Téléphone</label>
+          <input type="tel" id="mPhone" name="phone" placeholder="06 00 00 00 00" autocomplete="tel" inputmode="tel" required />
+        </div>
+        <div class="form-group">
+          <label for="mCity">Ville</label>
+          <input type="text" id="mCity" name="city" placeholder="Votre ville" autocomplete="address-level2" required />
+        </div>
+        <button type="submit" class="btn btn--gold btn--lg order-modal__submit" id="mSubmit">Confirmer ma commande — 429 DH →</button>
+        <p class="order-modal__note">🔒 Paiement à la livraison · Livraison 24–72h · Garantie satisfait ou remboursé 90 jours</p>
+      </form>
+    </div>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>

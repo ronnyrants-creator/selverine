@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  ref       String   @unique
+  name      String
+  phone     String
+  city      String
+  bundle    Int      @default(1)
+  total     Int      @default(0)
+  status    String   @default("new")
+  createdAt DateTime @default(now())
+}
