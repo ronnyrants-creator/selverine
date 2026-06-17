@@ -3,6 +3,7 @@ import { defineConfig } from 'prisma/config';
 
 export default defineConfig({
   schema: 'prisma/schema.prisma',
+  // @ts-expect-error — migrate is supported at runtime but not yet typed in this Prisma version
   migrate: {
     url: `file:${path.join(process.cwd(), 'prisma', 'selverine.db')}`,
     async adapter() {

@@ -1,29 +1,4 @@
-const COLS = [
-  {
-    title: 'Produit',
-    links: [
-      ['#pricing',    'Offres & Tarifs'],
-      ['#order',      'Commander'],
-      ['#faq',        'FAQ'],
-    ],
-  },
-  {
-    title: 'Service',
-    links: [
-      ['#', 'Livraison au Maroc'],
-      ['#', 'Retours & Remboursements'],
-      ['https://wa.me/212600000000', 'WhatsApp Support'],
-    ],
-  },
-  {
-    title: 'Légal',
-    links: [
-      ['#', 'Mentions légales'],
-      ['#', 'Confidentialité'],
-      ['#', 'CGV'],
-    ],
-  },
-];
+import Link from 'next/link';
 
 export function Footer() {
   return (
@@ -62,14 +37,24 @@ export function Footer() {
             </div>
           </div>
           <nav className="footer__nav" aria-label="Footer navigation">
-            {COLS.map(({ title, links }) => (
-              <div className="footer__col" key={title}>
-                <h4>{title}</h4>
-                {links.map(([href, label]) => (
-                  <a key={label} href={href}>{label}</a>
-                ))}
-              </div>
-            ))}
+            <div className="footer__col">
+              <h4>Produit</h4>
+              <a href="#pricing">Offres &amp; Tarifs</a>
+              <a href="#order">Commander</a>
+              <a href="#faq">FAQ</a>
+            </div>
+            <div className="footer__col">
+              <h4>Service</h4>
+              <a href="#order">Livraison au Maroc</a>
+              <a href="#order">Retours &amp; Remboursements</a>
+              <a href="https://wa.me/212600000000" target="_blank" rel="noopener noreferrer">WhatsApp Support</a>
+            </div>
+            <div className="footer__col">
+              <h4>Légal</h4>
+              <Link href="/mentions-legales">Mentions légales</Link>
+              <Link href="/confidentialite">Confidentialité</Link>
+              <Link href="/cgv">CGV</Link>
+            </div>
           </nav>
         </div>
         <div className="footer__bottom">

@@ -1,5 +1,33 @@
-import { redirect } from 'next/navigation';
+import { Hero }         from '@/components/Hero';
+import { LeadForm }     from '@/components/LeadForm';
+import { Moment }       from '@/components/Moment';
+import { RootCause }    from '@/components/RootCause';
+import { Why }          from '@/components/Why';
+import { Ingredients }  from '@/components/Ingredients';
+import { Ritual }       from '@/components/Ritual';
+import { Testimonials } from '@/components/Testimonials';
+import { Results }      from '@/components/Results';
+import { Trust }        from '@/components/Trust';
+import { FAQ }          from '@/components/FAQ';
+import { OrderForm }    from '@/components/OrderForm';
+import { Footer }       from '@/components/Footer';
 
 export default function Home() {
-  redirect('/index.html');
+  return (
+    <>
+      <Hero />
+      <LeadForm />
+      <Moment />
+      <RootCause />
+      <Why />
+      <Ingredients />
+      <Ritual />
+      <Testimonials />
+      <Results />
+      <Trust />
+      <FAQ />
+      <OrderForm />
+      <Footer />
+    </>
+  );
 }
