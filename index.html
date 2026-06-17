@@ -154,44 +154,53 @@
   <!-- ─── LEAD FORM ──────────────────────────────────────────── -->
   <section class="lead-form-section section-dark" id="form">
     <div class="container">
-        <div class="lead-form__compact fade-up">
-        <p class="eyebrow eyebrow--light">Commander maintenant</p>
-        <h2 class="lead-form__headline">
-          Votre routine commence<br /><em>ici.</em>
-        </h2>
+      <div class="lead-form__wrap fade-up">
+        <div class="lead-form__left">
+          <p class="eyebrow eyebrow--light">Commander maintenant</p>
+          <h2 class="lead-form__headline">
+            Votre routine<br /><em>commence ici.</em>
+          </h2>
+          <ul class="lead-form__benefits">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Livraison 24-48h partout au Maroc
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Paiement à la livraison — aucun risque
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Support WhatsApp 7j/7
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              15 000+ femmes satisfaites
+            </li>
+          </ul>
+        </div>
+        <div class="lead-form__right">
+          <form class="lead-form__form" id="leadForm" novalidate>
+            <p class="lead-form__form-title">Remplissez pour commander</p>
+            <div class="form-group">
+              <label for="fullname">Nom complet</label>
+              <input type="text" id="fullname" name="fullname" placeholder="Votre nom complet" autocomplete="name" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Téléphone</label>
+              <input type="tel" id="phone" name="phone" placeholder="06 00 00 00 00" autocomplete="tel" required />
+            </div>
+            <div class="form-group">
+              <label for="city">Ville</label>
+              <input type="text" id="city" name="city" placeholder="Votre ville" autocomplete="address-level2" required />
+            </div>
+            <button type="submit" class="btn btn--gold btn--lg form-submit">
+              Je commande maintenant →
+            </button>
+            <p class="form-note">🔒 Informations confidentielles · Aucun spam</p>
+          </form>
+        </div>
       </div>
-      <form class="lead-form__form fade-up" id="leadForm" novalidate>
-        <div class="form-group">
-          <label for="fullname">Nom complet</label>
-          <input type="text" id="fullname" name="fullname" placeholder="Votre nom complet" autocomplete="name" required />
-        </div>
-        <div class="form-group">
-          <label for="phone">Téléphone</label>
-          <input type="tel" id="phone" name="phone" placeholder="+212 6 00 00 00 00" autocomplete="tel" required />
-        </div>
-        <div class="form-group">
-          <label for="city">Ville</label>
-          <input type="text" id="city" name="city" placeholder="Votre ville" autocomplete="address-level2" required />
-        </div>
-        <button type="submit" class="btn btn--light btn--lg form-submit">
-          Commander maintenant →
-        </button>
-        <div class="lead-form__trust-inline">
-          <span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            Livraison rapide
-          </span>
-          <span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-            Paiement à la livraison
-          </span>
-          <span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-            Satisfaite ou remboursée
-          </span>
-        </div>
-        <p class="form-note">Vos informations sont confidentielles. Aucun spam, jamais.</p>
-      </form>
     </div>
   </section>
 
@@ -565,81 +574,39 @@
       <div class="testimonials__grid">
 
         <div class="testimonial-card fade-up" data-delay="0">
-          <div class="testimonial-card__portrait">
-            <div class="img-frame img-frame--circle" data-ratio="1:1">
-              <div class="img-frame__inner">
-                <div class="img-frame__label">PORTRAIT 1:1</div>
-              </div>
-            </div>
-          </div>
           <div class="testimonial-card__stars">★★★★★</div>
           <blockquote>"Après deux grossesses, mes cheveux n'étaient plus les mêmes. SELVERINE a littéralement changé ma relation à mon cuir chevelu. Dès la 4ème semaine, je voyais une différence."</blockquote>
-          <cite>Salma B. · Casablanca</cite>
+          <cite>Salma B.</cite>
         </div>
 
         <div class="testimonial-card testimonial-card--featured fade-up" data-delay="100">
-          <div class="testimonial-card__portrait">
-            <div class="img-frame img-frame--circle" data-ratio="1:1">
-              <div class="img-frame__inner">
-                <div class="img-frame__label">PORTRAIT 1:1</div>
-              </div>
-            </div>
-          </div>
           <div class="testimonial-card__stars">★★★★★</div>
           <blockquote>"J'avais essayé beaucoup de choses. Rien ne se comparait à ça. La texture est incroyable — on oublie qu'on l'a mis. Et les résultats parlent d'eux-mêmes après 8 semaines."</blockquote>
-          <cite>Imane K. · Rabat</cite>
+          <cite>Imane K.</cite>
         </div>
 
         <div class="testimonial-card fade-up" data-delay="200">
-          <div class="testimonial-card__portrait">
-            <div class="img-frame img-frame--circle" data-ratio="1:1">
-              <div class="img-frame__inner">
-                <div class="img-frame__label">PORTRAIT 1:1</div>
-              </div>
-            </div>
-          </div>
           <div class="testimonial-card__stars">★★★★★</div>
           <blockquote>"Le stress du travail avait impacté mes cheveux. SELVERINE est devenu mon rituel du matin — une façon de prendre soin de moi avant de prendre soin des autres."</blockquote>
-          <cite>Zineb R. · Marrakech</cite>
+          <cite>Zineb R.</cite>
         </div>
 
         <div class="testimonial-card fade-up" data-delay="0">
-          <div class="testimonial-card__portrait">
-            <div class="img-frame img-frame--circle" data-ratio="1:1">
-              <div class="img-frame__inner">
-                <div class="img-frame__label">PORTRAIT 1:1</div>
-              </div>
-            </div>
-          </div>
           <div class="testimonial-card__stars">★★★★★</div>
           <blockquote>"Cuir chevelu ultra-sec depuis mes 30 ans — squames constantes. En 5 semaines avec SELVERINE, tout a changé. Je peux enfin porter du noir sans me retourner."</blockquote>
-          <cite>Nadia O. · Tanger</cite>
+          <cite>Nadia O.</cite>
         </div>
 
         <div class="testimonial-card testimonial-card--featured fade-up" data-delay="100">
-          <div class="testimonial-card__portrait">
-            <div class="img-frame img-frame--circle" data-ratio="1:1">
-              <div class="img-frame__inner">
-                <div class="img-frame__label">PORTRAIT 1:1</div>
-              </div>
-            </div>
-          </div>
           <div class="testimonial-card__stars">★★★★★</div>
           <blockquote>"Après mon deuxième post-partum, mes tempes étaient quasi vides. Deux mois de SELVERINE ont changé la donne. Ma coiffeuse me demande ce que j'ai fait de différent."</blockquote>
-          <cite>Meryem A. · Agadir</cite>
+          <cite>Meryem A.</cite>
         </div>
 
         <div class="testimonial-card fade-up" data-delay="200">
-          <div class="testimonial-card__portrait">
-            <div class="img-frame img-frame--circle" data-ratio="1:1">
-              <div class="img-frame__inner">
-                <div class="img-frame__label">PORTRAIT 1:1</div>
-              </div>
-            </div>
-          </div>
           <div class="testimonial-card__stars">★★★★★</div>
           <blockquote>"Je pensais que c'était génétique — ma mère a les mêmes cheveux fins. Après 6 semaines, j'ai de vrais petits cheveux courts qui poussent sur la raie. Pas génétique."</blockquote>
-          <cite>Khadija M. · Fès</cite>
+          <cite>Khadija M.</cite>
         </div>
 
       </div>
@@ -840,55 +807,7 @@
     </div>
   </section>
 
-  <!-- ─── FOOTER ─────────────────────────────────────────────── -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__top">
-        <div class="footer__brand">
-          <span class="footer__logo">SELVERINE</span>
-          <p class="footer__tagline">Laboratoire Capillaire Premium.<br />Conçu pour les femmes exigeantes.</p>
-          <div class="footer__socials">
-            <a href="#" aria-label="Instagram">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-            </a>
-            <a href="#" aria-label="TikTok">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
-            </a>
-            <a href="#" aria-label="Facebook">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
-          </div>
-        </div>
-        <div class="footer__nav">
-          <div class="footer__col">
-            <h4>Produit</h4>
-            <a href="#pourquoi">Pourquoi SELVERINE</a>
-            <a href="#ingredients">Ingrédients</a>
-            <a href="#ritual">Rituel</a>
-            <a href="#resultats">Résultats</a>
-          </div>
-          <div class="footer__col">
-            <h4>Service</h4>
-            <a href="#">Livraison</a>
-            <a href="#">Retours</a>
-            <a href="#faq">FAQ</a>
-            <a href="mailto:contact@selverine.com">Contact</a>
-          </div>
-          <div class="footer__col">
-            <h4>Informations</h4>
-            <a href="#">À propos</a>
-            <a href="mentions-legales.html">Mentions légales</a>
-            <a href="confidentialite.html">Confidentialité</a>
-            <a href="cgv.html">CGV</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <p>&copy; 2026 SELVERINE. Tous droits réservés.</p>
-        <p class="footer__made">Formulé avec soin pour vous.</p>
-      </div>
-    </div>
-  </footer>
+  <!-- footer removed -->
 
   <script src="script.js"></script>
 </body>

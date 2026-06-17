@@ -507,43 +507,67 @@ ul, ol { list-style: none; }
 /* ── LEAD FORM ────────────────────────────────── */
 .lead-form-section { padding: var(--section-v) 0; }
 
-.lead-form__compact {
-  text-align: center;
-  margin-bottom: 2.5rem;
+/* Two-column layout */
+.lead-form__wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.lead-form__left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 .lead-form__headline {
   font-family: var(--serif);
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
   font-weight: 300;
   line-height: 1.15;
   color: var(--white);
-  margin-bottom: 0;
+  margin: 0;
 }
 .lead-form__headline em { font-style: italic; color: var(--gold); }
-
+.lead-form__benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.lead-form__benefits li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.4;
+}
+.lead-form__right {}
 .lead-form__form {
-  max-width: 480px;
-  margin: 0 auto;
   background: var(--white);
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 2.5rem 2rem;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.25);
 }
-
-.lead-form__trust-inline {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-  margin: 1.2rem 0 0.4rem;
-}
-.lead-form__trust-inline span {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+.lead-form__form-title {
   font-size: 0.7rem;
-  color: var(--gray-light);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-dk);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+@media (max-width: 768px) {
+  .lead-form__wrap {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
 }
 .form-group {
   margin-bottom: 1.4rem;
