@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { BUNDLES, useCart, type BundleQty } from '@/context/CartContext';
 
 export function PricingSection() {
@@ -12,7 +12,7 @@ export function PricingSection() {
           Investissez dans<br />vos racines
         </h2>
         <p className="pricing-section__sub">
-          💳 Paiement à la livraison · 🚚 Livraison 24-48h partout au Maroc
+          ðŸ’³ Paiement Ã  la livraison Â· ðŸšš Livraison 24-48h partout au Maroc
         </p>
 
         <div className="bundle-grid">
@@ -50,7 +50,7 @@ export function PricingSection() {
                     <p className="bundle-card__original">{b.original} DH</p>
                   )}
                   {b.shipping === 0 ? (
-                    <p className="bundle-card__shipping">🚚 Livraison offerte</p>
+                    <p className="bundle-card__shipping">ðŸšš Livraison offerte</p>
                   ) : (
                     <p className="bundle-card__shipping">+ {b.shipping} DH livraison</p>
                   )}
@@ -65,13 +65,13 @@ export function PricingSection() {
             className="btn btn--gold btn--xl"
             onClick={scrollToOrder}
           >
-            Je commence ma routine →
+            Je commence ma routine â†’
           </button>
-          <p className="pricing-section__guarantee">
-            ✓ Paiement à la livraison · ✓ Retour gratuit sous 30 jours · ✓ Support WhatsApp 7j/7
-          </p>
+          <p className="pricing-section__guarantee">✓ Paiement à la livraison · ✓ Livraison 24-48h au Maroc · ✓ Support WhatsApp 7j/7</p>
         </div>
       </div>
     </section>
   );
 }
+
+

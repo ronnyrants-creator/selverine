@@ -9,17 +9,12 @@ const MOROCCAN_TRUST = [
   {
     icon: '🚚',
     title: 'Livraison 24-48h au Maroc',
-    body: 'Casablanca, Rabat, Marrakech, Fès et toutes les villes — expédié le jour même avant 14h.',
+    body: 'Partout au Maroc — expédié le jour même avant 14h.',
   },
   {
     icon: '📲',
     title: 'Support WhatsApp',
     body: 'Notre équipe répond en français et en darija, 7j/7 de 9h à 21h.',
-  },
-  {
-    icon: '↩',
-    title: 'Garantie 30 jours',
-    body: 'Pas satisfaite ? On reprend le produit et on rembourse. Sans question.',
   },
 ];
 

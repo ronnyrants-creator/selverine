@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useState } from 'react';
 import { BUNDLES, useCart, type BundleQty } from '@/context/CartContext';
 
@@ -9,8 +9,8 @@ interface FormState {
 }
 
 const CITIES = [
-  'Casablanca', 'Rabat', 'Marrakech', 'Fès', 'Tanger', 'Agadir',
-  'Meknès', 'Oujda', 'Kénitra', 'Tétouan', 'Salé', 'Autre',
+  'Casablanca', 'Rabat', 'Marrakech', 'FÃ¨s', 'Tanger', 'Agadir',
+  'MeknÃ¨s', 'Oujda', 'KÃ©nitra', 'TÃ©touan', 'SalÃ©', 'Autre',
 ];
 
 export function OrderForm() {
@@ -32,8 +32,8 @@ export function OrderForm() {
   function validate() {
     if (!form.name.trim()) return 'Veuillez saisir votre nom complet.';
     if (!/^[0-9\s\+]{9,15}$/.test(form.phone.replace(/\s/g, '')))
-      return 'Numéro de téléphone invalide (ex: 06 12 34 56 78).';
-    if (!form.city) return 'Veuillez sélectionner votre ville.';
+      return 'NumÃ©ro de tÃ©lÃ©phone invalide (ex: 06 12 34 56 78).';
+    if (!form.city) return 'Veuillez sÃ©lectionner votre ville.';
     return null;
   }
 
@@ -63,7 +63,7 @@ export function OrderForm() {
       setOrderNum(data.ref ?? ref);
       setDone(true);
     } catch {
-      setError('Une erreur est survenue. Veuillez réessayer.');
+      setError('Une erreur est survenue. Veuillez rÃ©essayer.');
     } finally {
       setLoading(false);
     }
@@ -74,24 +74,24 @@ export function OrderForm() {
       <section className="order-form-section" id="order">
         <div className="section-inner">
           <div className="order-success">
-            <div className="order-success__icon">✓</div>
-            <h2 className="order-success__title">Commande confirmée !</h2>
-            <p className="order-success__ref">Référence : <strong>{orderNum}</strong></p>
+            <div className="order-success__icon">âœ“</div>
+            <h2 className="order-success__title">Commande confirmÃ©e !</h2>
+            <p className="order-success__ref">RÃ©fÃ©rence : <strong>{orderNum}</strong></p>
             <p className="order-success__body">
-              Merci {form.name.split(' ')[0]} — votre commande est bien enregistrée.
-              Notre équipe vous contactera dans les 2 heures pour confirmer la livraison.
+              Merci {form.name.split(' ')[0]} â€” votre commande est bien enregistrÃ©e.
+              Notre Ã©quipe vous contactera dans les 2 heures pour confirmer la livraison.
             </p>
             <div className="order-success__details">
-              <p><strong>{selected.label}</strong> — {total} DH</p>
-              <p>Paiement à la livraison · Livraison à {form.city}</p>
+              <p><strong>{selected.label}</strong> â€” {total} DH</p>
+              <p>Paiement Ã  la livraison Â· Livraison Ã  {form.city}</p>
             </div>
             <a
-              href={`https://wa.me/212600000000?text=Bonjour, j'ai passé une commande SELVERINE. Réf: ${orderNum}`}
+              href={`https://wa.me/212600000000?text=Bonjour, j'ai passÃ© une commande SELVERINE. RÃ©f: ${orderNum}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn--whatsapp"
             >
-              📲 Confirmer via WhatsApp
+              ðŸ“² Confirmer via WhatsApp
             </a>
           </div>
         </div>
@@ -104,7 +104,7 @@ export function OrderForm() {
       <div className="section-inner">
         <div className="order-form-wrap">
 
-          {/* ── LEFT: Summary ── */}
+          {/* â”€â”€ LEFT: Summary â”€â”€ */}
           <div className="order-summary">
             <h3 className="order-summary__title">Votre commande</h3>
 
@@ -135,12 +135,12 @@ export function OrderForm() {
               </div>
               <div className="order-summary__line">
                 <span>Livraison</span>
-                <span>{selected.shipping === 0 ? 'Offerte 🎁' : `${selected.shipping} DH`}</span>
+                <span>{selected.shipping === 0 ? 'Offerte ðŸŽ' : `${selected.shipping} DH`}</span>
               </div>
               {selected.original > selected.price && (
                 <div className="order-summary__line order-summary__line--savings">
-                  <span>Économie</span>
-                  <span>−{selected.original - selected.price} DH</span>
+                  <span>Ã‰conomie</span>
+                  <span>âˆ’{selected.original - selected.price} DH</span>
                 </div>
               )}
               <div className="order-summary__total">
@@ -151,17 +151,15 @@ export function OrderForm() {
 
             {/* Trust */}
             <div className="order-summary__trust">
-              <p>💳 Paiement à la livraison</p>
-              <p>🚚 Livraison 24-48h au Maroc</p>
-              <p>↩ Retour gratuit 30 jours</p>
-              <p>📲 Support WhatsApp inclus</p>
+              <p>ðŸ’³ Paiement Ã  la livraison</p>
+              <p>ðŸšš Livraison 24-48h au Maroc</p>              <p>ðŸ“² Support WhatsApp inclus</p>
             </div>
           </div>
 
-          {/* ── RIGHT: Form ── */}
+          {/* â”€â”€ RIGHT: Form â”€â”€ */}
           <form className="order-form" onSubmit={handleSubmit} noValidate>
             <h2 className="order-form__title">Finaliser ma commande</h2>
-            <p className="order-form__sub">Vous payez en espèces à la réception du colis.</p>
+            <p className="order-form__sub">Vous payez en espÃ¨ces Ã  la rÃ©ception du colis.</p>
 
             <div className="form-field">
               <label htmlFor="order-name" className="form-label">Nom complet *</label>
@@ -169,7 +167,7 @@ export function OrderForm() {
                 id="order-name"
                 type="text"
                 className="form-input"
-                placeholder="Votre prénom et nom"
+                placeholder="Votre prÃ©nom et nom"
                 value={form.name}
                 onChange={e => update('name', e.target.value)}
                 autoComplete="name"
@@ -178,7 +176,7 @@ export function OrderForm() {
             </div>
 
             <div className="form-field">
-              <label htmlFor="order-phone" className="form-label">Téléphone *</label>
+              <label htmlFor="order-phone" className="form-label">TÃ©lÃ©phone *</label>
               <input
                 id="order-phone"
                 type="tel"
@@ -201,7 +199,7 @@ export function OrderForm() {
                 onChange={e => update('city', e.target.value)}
                 required
               >
-                <option value="">Sélectionnez votre ville</option>
+                <option value="">SÃ©lectionnez votre ville</option>
                 {CITIES.map(c => (
                   <option key={c} value={c}>{c}</option>
                 ))}
@@ -217,11 +215,11 @@ export function OrderForm() {
               className="btn btn--gold btn--xl btn--full"
               disabled={loading}
             >
-              {loading ? 'Traitement en cours…' : `Confirmer la commande — ${total} DH`}
+              {loading ? 'Traitement en coursâ€¦' : `Confirmer la commande â€” ${total} DH`}
             </button>
 
             <p className="order-form__note">
-              Aucun paiement maintenant · Vous payez à la livraison
+              Aucun paiement maintenant Â· Vous payez Ã  la livraison
             </p>
           </form>
 
@@ -230,3 +228,4 @@ export function OrderForm() {
     </section>
   );
 }
+

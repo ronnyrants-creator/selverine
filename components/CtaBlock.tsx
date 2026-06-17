@@ -1,13 +1,12 @@
-'use client';
+﻿'use client';
 import { useCart } from '@/context/CartContext';
 
 const TRUST = [
-  '★★★★★ +15 000 clientes',
+  'â˜…â˜…â˜…â˜…â˜… +15 000 clientes',
   'Livraison 24-48h au Maroc',
-  'Paiement à la livraison',
+  'Paiement Ã  la livraison',
   'Support WhatsApp 7j/7',
-  'Garantie satisfaite 30j',
-];
+  ];
 
 interface Props {
   headline?: string;
@@ -19,7 +18,7 @@ interface Props {
 
 export function CtaBlock({
   headline,
-  urgency = 'Expédié aujourd\'hui avant 14h · Stock limité',
+  urgency = 'ExpÃ©diÃ© aujourd\'hui avant 14h Â· Stock limitÃ©',
   cta = 'Je commence ma routine',
   bundle = 2,
   dark = false,
@@ -36,15 +35,16 @@ export function CtaBlock({
         </div>
         {headline && <p className="cta-block__headline">{headline}</p>}
         <div className="cta-block__row">
-          <p className="cta-block__urgency">⚡ {urgency}</p>
+          <p className="cta-block__urgency">âš¡ {urgency}</p>
           <button
             className="btn btn--gold btn--lg"
             onClick={() => selectAndOrder(bundle)}
           >
-            {cta} →
+            {cta} â†’
           </button>
         </div>
       </div>
     </div>
   );
 }
+
