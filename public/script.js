@@ -85,9 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const stickyPrice       = document.querySelector('.sticky-bar__price');
 
   const bundleDetails = {
-    1: { name: 'Découverte',          detail: '1 bouteille · 269 DH',                      submitLabel: 'Commander — 269 DH →', heroLabel: 'Commencer ma routine · 269 DH →' },
-    2: { name: 'Routine recommandée', detail: '2 bouteilles · 429 DH · Économisez 109 DH', submitLabel: 'Commander — 429 DH →', heroLabel: 'Commencer ma routine · 429 DH →' },
-    3: { name: 'Cure complète',       detail: '3 bouteilles · 90 jours · Garantie incluse · 549 DH', submitLabel: 'Commander — 549 DH →', heroLabel: 'Commencer ma routine · 549 DH →' },
+    1: { name: 'Découverte',          desc: '1 flacon · 6–8 semaines',         stickyNote: '1 flacon',  submitLabel: 'Commander — 269 DH →', heroLabel: 'Commencer ma routine · 269 DH →' },
+    2: { name: 'Routine recommandée', desc: '2 flacons · Routine recommandée', stickyNote: '2 flacons', submitLabel: 'Commander — 429 DH →', heroLabel: 'Commencer ma routine · 429 DH →' },
+    3: { name: 'Cure complète',       desc: '3 flacons · 90 jours · garantie', stickyNote: '3 flacons', submitLabel: 'Commander — 549 DH →', heroLabel: 'Commencer ma routine · 549 DH →' },
   };
 
   function selectBundle(bundle, price) {
@@ -96,38 +96,52 @@ document.addEventListener('DOMContentLoaded', () => {
     if (priceInput)   priceInput.value   = price;
 
     const info = bundleDetails[bundle];
-    if (bundleSummaryName) bundleSummaryName.textContent = info.name;
-    if (bundleSummaryDet)  bundleSummaryDet.textContent  = info.detail;
-    if (formSubmitBtn)     formSubmitBtn.textContent      = info.submitLabel;
-    if (heroCta)           heroCta.textContent            = info.heroLabel;
-    if (stickyPrice)       stickyPrice.textContent        = price + ' DH';
+    if (heroCta)      heroCta.textContent = info.heroLabel;
+    if (stickyPrice)  stickyPrice.textContent = price + ' DH';
+    const stickyNote = document.getElementById('stickyNote');
+    const stickyCtaText = document.querySelector('.sticky-bar__cta-text');
+    if (stickyNote)    stickyNote.textContent    = info.stickyNote;
+    if (stickyCtaText) stickyCtaText.textContent = `Commander — ${price} DH →`;
 
-    // Update hero bundle-option active state
+    // Hero bundle-option active state
     document.querySelectorAll('.bundle-option').forEach(el => el.classList.remove('bundle-option--active'));
     const activeEl = document.querySelector(`.bundle-option[data-bundle="${bundle}"]`);
     if (activeEl) activeEl.classList.add('bundle-option--active');
 
-    // Sync modal: active state, hidden inputs, submit label
-    document.querySelectorAll('.m-bundle').forEach(el =>
-      el.classList.toggle('m-bundle--active', parseInt(el.dataset.bundle) === bundle));
-    const mBundleInput = document.getElementById('mBundleInput');
-    const mPriceInput  = document.getElementById('mPriceInput');
-    const mSubmit      = document.getElementById('mSubmit');
-    if (mBundleInput) mBundleInput.value = bundle;
-    if (mPriceInput)  mPriceInput.value  = price;
-    if (mSubmit)      mSubmit.textContent = `Confirmer ma commande — ${price} DH →`;
+    // Sync modal bundle buttons
+    document.querySelectorAll('.om-bundle').forEach(el =>
+      el.classList.toggle('om-bundle--active', parseInt(el.dataset.bundle) === bundle));
+
+    // Sync modal price/desc/submit
+    const mBundleInput   = document.getElementById('mBundleInput');
+    const mPriceInput    = document.getElementById('mPriceInput');
+    const omProductPrice = document.getElementById('omProductPrice');
+    const omProductDesc  = document.getElementById('omProductDesc');
+    const omTotal        = document.getElementById('omTotal');
+    const mSubmit        = document.getElementById('mSubmit');
+    if (mBundleInput)   mBundleInput.value              = bundle;
+    if (mPriceInput)    mPriceInput.value               = price;
+    if (omProductPrice) omProductPrice.textContent      = price + ' DH';
+    if (omProductDesc)  omProductDesc.textContent       = info.desc;
+    if (omTotal)        omTotal.textContent             = price + ' DH';
+    if (mSubmit)        mSubmit.textContent             = info.submitLabel;
   }
 
-  // Click on any bundle-option (in hero)
+  // Hero bundle-option clicks
   document.querySelectorAll('.bundle-option').forEach(opt => {
     opt.addEventListener('click', () => {
-      const bundle = parseInt(opt.dataset.bundle);
-      const price  = parseInt(opt.dataset.price);
-      selectBundle(bundle, price);
+      selectBundle(parseInt(opt.dataset.bundle), parseInt(opt.dataset.price));
     });
   });
 
-  // Init default (popular — bundle 2)
+  // Modal bundle clicks
+  document.querySelectorAll('.om-bundle').forEach(opt => {
+    opt.addEventListener('click', () => {
+      selectBundle(parseInt(opt.dataset.bundle), parseInt(opt.dataset.price));
+    });
+  });
+
+  // Init default (bundle 2)
   selectBundle(2, 429);
 
 
@@ -170,12 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Modal bundle selection
-  document.querySelectorAll('.m-bundle').forEach(opt => {
-    opt.addEventListener('click', () => {
-      selectBundle(parseInt(opt.dataset.bundle), parseInt(opt.dataset.price));
-    });
-  });
 
 
   // ── TEXTURE BARS ───────────────────────────────────────────
@@ -285,17 +293,93 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+  // ── TESTIMONIAL SLIDER ─────────────────────────────────────
+  const testiTrack = document.getElementById('testiTrack');
+  const testiDots  = document.getElementById('testiDots');
+  if (testiTrack && testiDots) {
+    const slides = testiTrack.querySelectorAll('.testi-slide');
+    let current = 0;
+    let timer;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'testi-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Avis ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      testiDots.appendChild(dot);
+    });
+
+    function goTo(idx) {
+      current = (idx + slides.length) % slides.length;
+      testiTrack.style.transform = `translateX(-${current * 100}%)`;
+      testiDots.querySelectorAll('.testi-dot').forEach((d, i) =>
+        d.classList.toggle('active', i === current));
+      clearInterval(timer);
+      timer = setInterval(() => goTo(current + 1), 7500);
+    }
+
+    timer = setInterval(() => goTo(current + 1), 7500);
+
+    // Swipe support
+    let startX = 0;
+    testiTrack.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    testiTrack.addEventListener('touchend',   e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+    });
+  }
+
   // ── LEAD FORM — submit ─────────────────────────────────────
+  // Validates Moroccan mobile numbers: 06/07/05 + 8 digits (spaces/dashes ignored)
+  function isValidPhone(val) {
+    const digits = val.replace(/[\s\-\.]/g, '');
+    return /^(0[5-7]\d{8}|(\+212|00212)[5-7]\d{8})$/.test(digits);
+  }
+
+  function phoneGroup(input) {
+    return input.closest('.form-group') || input.closest('.om-field');
+  }
+
+  function setPhoneError(input, msg) {
+    const group = phoneGroup(input);
+    if (!group) return;
+    group.classList.add('form-group--error');
+    group.classList.remove('form-group--valid');
+    let hint = group.querySelector('.form-group__hint');
+    if (!hint) {
+      hint = document.createElement('span');
+      hint.className = 'form-group__hint';
+      group.appendChild(hint);
+    }
+    hint.textContent = msg;
+  }
+
+  function clearPhoneError(input) {
+    const group = phoneGroup(input);
+    if (!group) return;
+    group.classList.remove('form-group--error');
+    const hint = group.querySelector('.form-group__hint');
+    if (hint) hint.textContent = '';
+  }
+
   const leadForm = document.getElementById('leadForm');
   if (leadForm) {
-    // Real-time validation on blur
     ['fullname', 'phone', 'city'].forEach(id => {
       const input = document.getElementById(id);
       if (!input) return;
       input.addEventListener('blur', () => {
         const group = input.closest('.form-group');
         if (!group) return;
-        if (!input.value.trim()) {
+        if (id === 'phone') {
+          if (!input.value.trim()) {
+            setPhoneError(input, 'Numéro requis');
+          } else if (!isValidPhone(input.value)) {
+            setPhoneError(input, 'Entrez un numéro marocain valide (ex: 06 12 34 56 78)');
+          } else {
+            clearPhoneError(input);
+            group.classList.add('form-group--valid');
+          }
+        } else if (!input.value.trim()) {
           group.classList.add('form-group--error');
         } else {
           group.classList.remove('form-group--error');
@@ -303,7 +387,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
       input.addEventListener('focus', () => {
-        input.closest('.form-group')?.classList.remove('form-group--error');
+        const group = input.closest('.form-group');
+        group?.classList.remove('form-group--error');
+        const hint = group?.querySelector('.form-group__hint');
+        if (hint) hint.textContent = '';
       });
     });
 
@@ -314,12 +401,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const phone = leadForm.phone.value.trim();
       const city  = leadForm.city.value.trim();
 
-      if (!name || !phone || !city) {
-        if (!name)  document.getElementById('fullname')?.closest('.form-group')?.classList.add('form-group--error');
-        if (!phone) document.getElementById('phone')?.closest('.form-group')?.classList.add('form-group--error');
-        if (!city)  document.getElementById('city')?.closest('.form-group')?.classList.add('form-group--error');
-        return;
-      }
+      let hasError = false;
+      if (!name)  { document.getElementById('fullname')?.closest('.form-group')?.classList.add('form-group--error'); hasError = true; }
+      if (!city)  { document.getElementById('city')?.closest('.form-group')?.classList.add('form-group--error'); hasError = true; }
+      if (!phone) { setPhoneError(document.getElementById('phone'), 'Numéro requis'); hasError = true; }
+      else if (!isValidPhone(phone)) { setPhoneError(document.getElementById('phone'), 'Entrez un numéro marocain valide (ex: 06 12 34 56 78)'); hasError = true; }
+      if (hasError) return;
 
       const originalText = btn.textContent;
       btn.textContent = 'Envoi en cours…';
@@ -378,11 +465,26 @@ document.addEventListener('DOMContentLoaded', () => {
       input.addEventListener('blur', () => {
         const group = input.closest('.form-group');
         if (!group) return;
-        group.classList.toggle('form-group--error', !input.value.trim());
-        if (input.value.trim()) group.classList.add('form-group--valid');
+        if (id === 'mPhone') {
+          if (!input.value.trim()) {
+            setPhoneError(input, 'Numéro requis');
+          } else if (!isValidPhone(input.value)) {
+            setPhoneError(input, 'Numéro invalide (ex: 06 12 34 56 78)');
+          } else {
+            clearPhoneError(input);
+            group.classList.add('form-group--valid');
+          }
+        } else {
+          group.classList.toggle('form-group--error', !input.value.trim());
+          if (input.value.trim()) group.classList.add('form-group--valid');
+        }
       });
-      input.addEventListener('focus', () =>
-        input.closest('.form-group')?.classList.remove('form-group--error'));
+      input.addEventListener('focus', () => {
+        const group = phoneGroup(input);
+        group?.classList.remove('form-group--error');
+        const hint = group?.querySelector('.form-group__hint');
+        if (hint) hint.textContent = '';
+      });
     });
 
     orderForm.addEventListener('submit', async (e) => {
@@ -392,12 +494,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const phone = orderForm.phone.value.trim();
       const city  = orderForm.city.value.trim();
 
-      if (!name || !phone || !city) {
-        if (!name)  document.getElementById('mName')?.closest('.form-group')?.classList.add('form-group--error');
-        if (!phone) document.getElementById('mPhone')?.closest('.form-group')?.classList.add('form-group--error');
-        if (!city)  document.getElementById('mCity')?.closest('.form-group')?.classList.add('form-group--error');
-        return;
-      }
+      let hasError = false;
+      if (!name)  { document.getElementById('mName')?.closest('.form-group')?.classList.add('form-group--error'); hasError = true; }
+      if (!city)  { document.getElementById('mCity')?.closest('.form-group')?.classList.add('form-group--error'); hasError = true; }
+      if (!phone) { setPhoneError(document.getElementById('mPhone'), 'Numéro requis'); hasError = true; }
+      else if (!isValidPhone(phone)) { setPhoneError(document.getElementById('mPhone'), 'Numéro invalide (ex: 06 12 34 56 78)'); hasError = true; }
+      if (hasError) return;
 
       const originalText = btn.textContent;
       btn.textContent = 'Envoi en cours…';

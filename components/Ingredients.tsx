@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { ImageFrame } from './ImageFrame';
 import { ScrollReveal } from './ScrollReveal';
 
@@ -24,7 +25,17 @@ export function Ingredients() {
           {ITEMS.map(({ n, name, sci, benefit, reverse }) => (
             <ScrollReveal key={n} className={`ingredient-card${reverse ? ' ingredient-card--reverse' : ''}`}>
               <div className="ingredient-card__image">
-                <ImageFrame variant="square" label={`INGREDIENT 1:1`} desc={name} />
+                {n === 1 ? (
+                  <Image
+                    src="/images/ingredient-ginseng-v2.png"
+                    alt={name}
+                    width={500}
+                    height={500}
+                    style={{ width: '100%', height: 'auto', borderRadius: '4px', display: 'block' }}
+                  />
+                ) : (
+                  <ImageFrame variant="square" label={`INGREDIENT 1:1`} desc={name} />
+                )}
               </div>
               <div className="ingredient-card__content">
                 <p className="eyebrow">Actif N°{n}</p>

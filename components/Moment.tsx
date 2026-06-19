@@ -1,4 +1,4 @@
-import { ImageFrame } from './ImageFrame';
+import Image from 'next/image';
 import { ScrollReveal } from './ScrollReveal';
 
 const PAINS = [
@@ -29,7 +29,14 @@ export function Moment() {
           </ScrollReveal>
 
           <div className="moment__image">
-            <ImageFrame variant="editorial" label="EDITORIAL 3:4" desc="Femme tenant sa brosse à cheveux pleine de cheveux perdus. Lumière douce, style éditorial premium." />
+            <Image
+              src="/images/woman-brush.jpg"
+              alt="Femme tenant sa brosse à cheveux avec des cheveux perdus"
+              width={600}
+              height={800}
+              className="moment__photo"
+              style={{ width: '100%', height: 'auto', borderRadius: '4px', display: 'block' }}
+            />
           </div>
         </div>
       </div>
