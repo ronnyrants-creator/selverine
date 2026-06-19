@@ -1,42 +1,31 @@
 FROM node:20-alpine AS base
 
+# ── deps: only what server.js needs (better-sqlite3 native build) ──
+# We install better-sqlite3 directly rather than `npm ci`, because the
+# committed package-lock.json still references the old Next.js/Prisma stack
+# while the live app is the plain Node server in server.js.
 FROM base AS deps
 RUN apk add --no-cache libc6-compat python3 make g++
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm install --omit=dev better-sqlite3@^12.10.1
 
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-ENV NEXT_TELEMETRY_DISABLED=1
-RUN npx prisma generate
-RUN npm run build
-
+# ── runner: plain Node HTTP server serving the static frontend/ ──
 FROM base AS runner
 WORKDIR /app
 ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs \
+ && adduser  --system --uid 1001 selverine
 
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/scripts ./scripts
-COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/node_modules/better-sqlite3 ./node_modules/better-sqlite3
-COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=deps /app/node_modules ./node_modules
+COPY server.js database.js ./
+COPY frontend ./frontend
 
-RUN mkdir -p /app/prisma
+# Writable app dir so the SQLite file can be created on first request
+RUN chown -R selverine:nodejs /app
+USER selverine
 
-USER nextjs
 EXPOSE 3000
-
-CMD ["sh", "-c", "node scripts/setup-db.mjs && node server.js"]
+CMD ["node", "server.js"]

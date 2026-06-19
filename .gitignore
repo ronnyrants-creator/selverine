@@ -12,3 +12,7 @@ build/
 *.swp
 *.swo
 *~
+
+# Local SQLite runtime DB (host creates its own via DB_PATH)
+*.db
+tsconfig.tsbuildinfo
