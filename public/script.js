@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const stickyPrice       = document.querySelector('.sticky-bar__price');
 
   const bundleDetails = {
-    1: { name: 'Découverte',          desc: '1 flacon · 6–8 semaines',         stickyNote: '1 flacon',  submitLabel: 'Commander — 269 DH →', heroLabel: 'Commencer ma routine · 269 DH →' },
+    1: { name: 'Découverte',          desc: '1 flacon · 1 mois',               stickyNote: '1 flacon',  submitLabel: 'Commander — 269 DH →', heroLabel: 'Commencer ma routine · 269 DH →' },
     2: { name: 'Routine recommandée', desc: '2 flacons · Routine recommandée', stickyNote: '2 flacons', submitLabel: 'Commander — 429 DH →', heroLabel: 'Commencer ma routine · 429 DH →' },
     3: { name: 'Cure complète',       desc: '3 flacons · 90 jours · garantie', stickyNote: '3 flacons', submitLabel: 'Commander — 549 DH →', heroLabel: 'Commencer ma routine · 549 DH →' },
   };

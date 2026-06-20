@@ -763,9 +763,12 @@ ul, ol { list-style: none; }
   margin-top: 0;
 }
 .pain-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.2rem;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 1.2rem;
+  row-gap: 0.35rem;
+  align-items: start;
   padding: 1.4rem 1.6rem;
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -782,16 +785,28 @@ ul, ol { list-style: none; }
   display: flex; align-items: center; justify-content: center;
   background: var(--beige);
   border-radius: 50%;
-  flex-shrink: 0;
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: start;
+  margin-top: 2px;
 }
 .pain-card h3 {
   font-family: var(--serif);
   font-size: 1.15rem;
   font-weight: 500;
   color: var(--gray-dark);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0;
+  grid-column: 2;
+  grid-row: 1;
 }
-.pain-card p { font-size: 0.9375rem; line-height: 1.7; color: var(--gray); }
+.pain-card p {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--gray);
+  grid-column: 2;
+  grid-row: 2;
+  margin: 0;
+}
 
 /* ── ROOT CAUSE / DIAGRAM ─────────────────────── */
 .rootcause { padding: var(--section-v) 0; }
@@ -1625,7 +1640,7 @@ ul, ol { list-style: none; }
   .hero__stats { justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
   .hero__trust-line { justify-content: center; }
   .bundle-selector { text-align: left; }
-  .bundle-option:has(.bundle-option__top-badge) { margin-top: 14px; }
+  .bundle-option:has(.bundle-option__top-badge) { margin-top: 0; }
 
   /* WHY — orbit items overlay the image as corner badges */
   .why__bottle { max-width: 320px; }
@@ -2184,12 +2199,14 @@ ul, ol { list-style: none; }
 
 .bundle-option {
   position: relative;
+  display: flex;
+  flex-direction: column;
   border: 1.5px solid #E8E2D9;
   border-radius: 16px;
   background: var(--white);
   cursor: pointer;
   transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-  overflow: visible;
+  overflow: hidden;
 }
 .bundle-option:hover { border-color: var(--forest); }
 
@@ -2200,23 +2217,25 @@ ul, ol { list-style: none; }
 }
 
 .bundle-option__top-badge {
-  position: absolute;
-  top: -10px;
-  right: 14px;
+  display: block;
+  width: 100%;
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   background: var(--forest);
   color: var(--white);
-  border-radius: 30px;
-  padding: 0.2rem 0.65rem;
+  border-radius: 0;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  padding: 0.25rem 0.75rem;
   white-space: nowrap;
   pointer-events: none;
+  text-align: center;
 }
 .bundle-option__top-badge--gold { background: var(--clay); }
 
-.bundle-option:has(.bundle-option__top-badge) { margin-top: 12px; }
+.bundle-option:has(.bundle-option__top-badge) { margin-top: 0; }
 
 .bundle-option__row {
   display: flex;
@@ -2683,16 +2702,16 @@ ul, ol { list-style: none; }
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem;
+  padding: 1rem;
 }
 .order-modal.is-open { display: flex; }
 
 .order-modal__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(15,36,32,0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(10,25,20,0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -2701,19 +2720,22 @@ ul, ol { list-style: none; }
 .order-modal__dialog {
   position: relative;
   width: 100%;
-  max-width: 380px;
-  max-height: 96vh;
+  max-width: 420px;
+  max-height: 90vh;
   overflow-y: auto;
   background: var(--white);
   border-radius: 20px;
-  padding: 1.1rem 1.15rem 1rem;
-  box-shadow: 0 24px 80px rgba(15,36,32,0.3);
-  transform: scale(0.94) translateY(16px);
+  padding: 1.4rem 1.3rem 1.5rem;
+  box-shadow: 0 20px 60px rgba(10,25,20,0.25), 0 4px 16px rgba(10,25,20,0.1);
+  transform: scale(0.92) translateY(12px);
   opacity: 0;
-  transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
   -webkit-overflow-scrolling: touch;
 }
-.order-modal.is-open .order-modal__dialog { transform: scale(1) translateY(0); opacity: 1; }
+.order-modal.is-open .order-modal__dialog {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
 
 /* Close */
 .om-close {
@@ -2773,10 +2795,11 @@ ul, ol { list-style: none; }
   color: var(--gray);
   margin-bottom: 0.35rem;
 }
-.om-bundles { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.1rem; }
+.om-bundles { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.1rem; padding-top: 0.5rem; }
 .om-bundle {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.65rem;
   width: 100%;
@@ -2850,18 +2873,22 @@ ul, ol { list-style: none; }
   letter-spacing: 0.03em;
 }
 .om-bundle__badge {
-  position: absolute;
-  top: -8px; left: 0.8rem;
+  display: block;
+  width: 100%;
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--white);
   background: var(--forest);
-  padding: 0.15rem 0.5rem;
+  padding: 0.18rem 0.6rem;
   border-radius: 30px;
+  white-space: nowrap;
+  text-align: center;
+  margin-bottom: 0.1rem;
 }
 .om-bundle__badge--gold { background: var(--clay); }
+.om-bundle:has(.om-bundle__badge) { margin-top: 0; }
 
 /* Product row */
 .om-product {
@@ -3189,3 +3216,201 @@ body.modal-open { overflow: hidden; }
   border-top: 1px solid #f0ebe3;
 }
 .footer-minimal a { color: #aaa; text-decoration: underline; }
+
+/* ══════════════════════════════════════════════
+   MOBILE REAL-DEVICE FIXES
+   Targets actual phone rendering issues
+   (overflow, badge bleed, hero stack, modal fit)
+══════════════════════════════════════════════ */
+
+/* Global safety net — nothing escapes the viewport */
+html, body {
+  max-width: 100vw;
+}
+* { min-width: 0; }
+
+/* Hero badge must not bleed off screen on mobile */
+@media (max-width: 900px) {
+  .hero__badge {
+    display: none;
+  }
+
+  /* Hero inner: strict single column, no overflow */
+  .hero__inner {
+    grid-template-columns: 1fr !important;
+    overflow: hidden;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    gap: 1.2rem !important;
+  }
+
+  /* Feature chips: allow wrap, no nowrap overflow */
+  .hero__feature-chip {
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  /* Bundle selector: constrain fully */
+  .bundle-selector {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+  .bundle-option {
+    width: 100%;
+    overflow: visible;
+  }
+  .bundle-option__row {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .bundle-option__price {
+    flex-shrink: 0;
+    min-width: 0;
+  }
+  .bundle-option__old,
+  .bundle-option__savings {
+    white-space: nowrap;
+  }
+
+  /* Sticky bar: never overflow horizontally */
+  .sticky-bar {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* Announce bar: allow text wrap */
+  .announce-text {
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* Sections: full width, no overflow */
+  section, .container {
+    overflow-x: hidden;
+  }
+
+  /* Ingredient cards: always single column */
+  .ingredient-card {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Ritual: single column */
+  .ritual__cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Trust grid: single column */
+  .trust-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .trust-card--hero {
+    grid-row: auto !important;
+  }
+
+  /* CTA final: stack vertically */
+  .cta-final__inner {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
+  .cta-final__product {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  /* Why orbit: stop layering labels over the bottle — stack them in a clean,
+     readable 2-column list below the image so the text is never overlapped. */
+  .why__orbit {
+    position: relative !important;
+    inset: auto !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    pointer-events: auto;
+  }
+  .orbit-item,
+  .orbit-item--1, .orbit-item--2,
+  .orbit-item--3, .orbit-item--4 {
+    position: static !important;
+    top: auto !important; left: auto !important;
+    right: auto !important; bottom: auto !important;
+    align-self: stretch !important;
+    justify-self: stretch !important;
+    justify-content: flex-start;
+    background: rgba(255,255,255,0.95);
+    font-size: 0.78rem;
+    padding: 0.55rem 0.7rem;
+    gap: 0.45rem;
+    white-space: normal;
+    word-break: break-word;
+    text-align: left;
+  }
+}
+
+/* Phone-specific (≤ 640px) */
+@media (max-width: 640px) {
+
+  /* Modal: fits any phone without scroll */
+  .order-modal__dialog {
+    max-height: 88vh !important;
+    padding: 1.1rem 1rem 1.4rem !important;
+    border-radius: 20px !important;
+  }
+
+  /* Testimonial slider: full width */
+  .testi-track-wrap { overflow: hidden; }
+  .testi-track { display: flex; }
+  .testi-slide { min-width: 100%; box-sizing: border-box; }
+
+  /* Pain cards */
+  .pain-cards { grid-template-columns: 1fr !important; }
+
+  /* Section headlines: scale down cleanly */
+  .section-headline {
+    font-size: clamp(1.65rem, 6.5vw, 2.2rem) !important;
+    word-break: break-word;
+  }
+
+  /* Hero CTA button: always full width */
+  .hero-cta {
+    width: 100% !important;
+    font-size: 0.85rem !important;
+    min-height: 54px !important;
+  }
+
+  /* Prevent any image from overflowing */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Nav: keep compact */
+  .nav__inner {
+    padding: 0 16px !important;
+    height: 54px !important;
+  }
+
+  /* FAQ answers */
+  .faq-item__answer p {
+    max-width: 100% !important;
+  }
+
+  /* Remove any horizontal padding that causes bleed */
+  .cta-final {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Trust section: 1 col cards */
+  .trust-card--sm {
+    padding: 1.1rem 1rem !important;
+  }
+
+  /* Footer bottom padding for sticky bar */
+  .footer-minimal {
+    padding-bottom: calc(1.5rem + 90px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
