@@ -125,6 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (omProductDesc)  omProductDesc.textContent       = info.desc;
     if (omTotal)        omTotal.textContent             = price + ' DH';
     if (mSubmit)        mSubmit.textContent             = info.submitLabel;
+
+    const omGuarantee = document.getElementById('omGuaranteeBadge');
+    if (omGuarantee) omGuarantee.style.display = bundle === 3 ? 'block' : 'none';
   }
 
   // Hero bundle-option clicks
@@ -157,9 +160,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   function closeOrderModal() {
     if (!orderModal) return;
+    orderModal.classList.add('is-closing');
     orderModal.classList.remove('is-open');
     orderModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
+    setTimeout(() => orderModal.classList.remove('is-closing'), 260);
   }
 
   // Open from any [data-order] trigger
