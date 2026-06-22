@@ -104,6 +104,12 @@ const server = http.createServer(async (req, res) => {
     filePath = path.join(filePath, 'index.html');
   }
 
+  // Try .html extension if file not found
+  if (!fs.existsSync(filePath) && !path.extname(filePath)) {
+    const withHtml = filePath + '.html';
+    if (fs.existsSync(withHtml)) filePath = withHtml;
+  }
+
   serveFile(res, filePath);
 });
 
