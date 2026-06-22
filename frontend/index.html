@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/style.css?v=5" />
+  <link rel="stylesheet" href="/style.css?v=6" />
   <link rel="preload" as="image" href="/images/hero-mobile.webp" type="image/webp" media="(max-width: 640px)" fetchpriority="high" />
   <link rel="preload" as="image" href="/images/hero.webp" type="image/webp" media="(min-width: 641px)" fetchpriority="high" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%231A3D32'/><text y='44' x='50%' text-anchor='middle' font-size='38' font-family='Georgia,serif' fill='%23F8F4EE'>S</text></svg>" />
@@ -127,13 +127,16 @@
               <div class="bundle-option__radio"></div>
               <div class="bundle-option__info">
                 <span class="bundle-option__name">Cure complète</span>
-                <span class="bundle-option__desc">3 bouteilles · 90 jours · <strong style="color:#1A3D32">Garantie remboursement incluse</strong> — photo avant + utilisation complète</span>
+                <span class="bundle-option__desc">3 bouteilles · 90 jours</span>
               </div>
               <div class="bundle-option__price">
                 <span class="bundle-option__old"><s>807 DH</s></span>
                 <span class="bundle-option__amount">549 DH</span>
                 <span class="bundle-option__savings">− 258 DH</span>
               </div>
+            </div>
+            <div class="bundle-option__guarantee" id="bundleGuaranteeBadge">
+              🛡️ <strong>Garantie remboursement 90 jours incluse</strong> — zéro risque
             </div>
           </div>
         </div>
@@ -404,11 +407,6 @@
       <div class="ingredients__list">
 
         <div class="ingredient-card fade-up">
-          <div class="ingredient-card__image">
-            <div class="img-frame img-frame--square" data-ratio="1:1">
-              <img src="/images/ingredient-jojoba.png" alt="Huile de Jojoba" loading="lazy" decoding="async" />
-            </div>
-          </div>
           <div class="ingredient-card__content">
             <p class="eyebrow">Actif N°1</p>
             <h3>Huile de Jojoba</h3>
@@ -418,45 +416,33 @@
               Équilibre et nourrit sans alourdir
             </div>
           </div>
-        </div>
-
-        <div class="ingredient-card ingredient-card--reverse fade-up">
-          <div class="ingredient-card__content">
-            <p class="eyebrow">Actif N°2</p>
-            <h3>Huile d'Argan (Azir)</h3>
-            <p class="ingredient-science">L'or liquide du Maroc. Riche en vitamine E et acides gras essentiels, elle nourrit en profondeur, répare les pointes et redonne éclat et souplesse à la fibre capillaire.</p>
-            <div class="ingredient-benefit">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Répare, nourrit et redonne brillance
-            </div>
-          </div>
           <div class="ingredient-card__image">
             <div class="img-frame img-frame--square" data-ratio="1:1">
-              <img src="/images/ingredient-argan.png" alt="Huile d'Argan" loading="lazy" decoding="async" />
+              <img src="/images/ingredient-jojoba.png" alt="Huile de Jojoba" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
 
         <div class="ingredient-card fade-up">
-          <div class="ingredient-card__image">
-            <div class="img-frame img-frame--square" data-ratio="1:1">
-              <img src="/images/ingredient-clove.png" alt="Huile de Clou de Girofle" loading="lazy" decoding="async" />
-            </div>
-          </div>
           <div class="ingredient-card__content">
-            <p class="eyebrow">Actif N°3</p>
-            <h3>Huile de Clou de Girofle (9ronfal)</h3>
-            <p class="ingredient-science">Puissant stimulant de la circulation sanguine, elle active les follicules pileux dormants et possède des propriétés antifongiques naturelles qui assainissent le cuir chevelu.</p>
+            <p class="eyebrow">Actif N°2</p>
+            <h3>Romarin (Azir)</h3>
+            <p class="ingredient-science">Stimulant naturel de la microcirculation, le romarin active les follicules pileux et renforce l'ancrage capillaire. Des études cliniques le placent au niveau du minoxidil pour réduire la chute.</p>
             <div class="ingredient-benefit">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Active la repousse et assainit le cuir chevelu
+              Stimule la repousse et réduit la chute
+            </div>
+          </div>
+          <div class="ingredient-card__image">
+            <div class="img-frame img-frame--square" data-ratio="1:1">
+              <img src="/images/ingredient-argan.png" alt="Romarin" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
 
-        <div class="ingredient-card ingredient-card--reverse fade-up">
+        <div class="ingredient-card fade-up">
           <div class="ingredient-card__content">
-            <p class="eyebrow">Actif N°4</p>
+            <p class="eyebrow">Actif N°3</p>
             <h3>Ginseng (Jinsing)</h3>
             <p class="ingredient-science">Adaptogène légendaire utilisé en médecine traditionnelle depuis des siècles. Le ginseng stimule la prolifération des cellules du cuir chevelu et prolonge la phase de croissance des cheveux.</p>
             <div class="ingredient-benefit">
@@ -486,33 +472,33 @@
       </div>
       <div class="ritual__cards">
         <div class="ritual-card fade-up" data-delay="0">
+          <div class="ritual-card__content">
+            <span class="ritual-card__step">01</span>
+            <h3><strong>Appliquez</strong> — quelques sprays</h3>
+            <p>Directement sur le cuir chevelu sec ou légèrement humide. <strong>Pas sur les longueurs.</strong></p>
+          </div>
           <div class="img-frame img-frame--portrait" data-ratio="4:5">
             <img src="/images/ritual-1.png" alt="Étape 1 — Appliquer SELVERINE" loading="lazy" decoding="async" />
           </div>
-          <div class="ritual-card__content">
-            <span class="ritual-card__step">01</span>
-            <h3><strong>Appliquez</strong> — 4 à 6 gouttes</h3>
-            <p>Directement sur le cuir chevelu sec ou légèrement humide. <strong>Pas sur les longueurs.</strong></p>
-          </div>
         </div>
         <div class="ritual-card fade-up" data-delay="150">
-          <div class="img-frame img-frame--portrait" data-ratio="4:5">
-            <img src="/images/ritual-2.png" alt="Étape 2 — Masser le cuir chevelu" loading="lazy" decoding="async" />
-          </div>
           <div class="ritual-card__content">
             <span class="ritual-card__step">02</span>
             <h3><strong>Massez</strong> — 60 secondes</h3>
             <p>Mouvements circulaires du bout des doigts. <strong>C'est ici que la magie commence</strong> — la microcirculation s'active.</p>
           </div>
+          <div class="img-frame img-frame--portrait" data-ratio="4:5">
+            <img src="/images/ritual-2.png" alt="Étape 2 — Masser le cuir chevelu" loading="lazy" decoding="async" />
+          </div>
         </div>
         <div class="ritual-card fade-up" data-delay="300">
-          <div class="img-frame img-frame--portrait" data-ratio="4:5">
-            <img src="/images/ritual-3.png" alt="Résultat — Cheveux en pleine santé" loading="lazy" decoding="async" />
-          </div>
           <div class="ritual-card__content">
             <span class="ritual-card__step">03</span>
             <h3><strong>Laissez agir</strong> — sans rinçage</h3>
             <p>La formule pénètre en <strong>moins de 2 minutes</strong>. Invisible, indétectable. Continuez votre journée.</p>
+          </div>
+          <div class="img-frame img-frame--portrait" data-ratio="4:5">
+            <img src="/images/ritual-3.png" alt="Résultat — Cheveux en pleine santé" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
@@ -723,23 +709,11 @@
         </div>
         <div class="faq-item fade-up">
           <button class="faq-item__question" aria-expanded="false">
-            <span>Il semble qu'il n'y ait aucun résultat — que faire ?</span>
-            <svg class="faq-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="faq-item__answer">
-            <p>Pas de panique — c'est exactement pour cela que nous avons créé notre garantie résultats. Si après 90 jours vous ne constatez aucune amélioration, nous vous remboursons intégralement. Deux conditions simples :<br /><br />
-            <strong>1. Une photo de vous avant de commencer</strong> — une photo claire du cuir chevelu ou de la raie, prise le premier jour d'utilisation.<br />
-            <strong>2. 90 jours d'utilisation complète</strong> — le produit doit avoir été appliqué chaque jour pendant toute la durée de la cure.<br /><br />
-            C'est pour cette raison que la garantie est incluse uniquement dans l'offre <strong>Cure Complète</strong> (3 bouteilles · 90 jours). Cette offre vous donne le temps nécessaire pour observer de vrais résultats.</p>
-          </div>
-        </div>
-        <div class="faq-item fade-up">
-          <button class="faq-item__question" aria-expanded="false">
             <span>Combien de temps dure un flacon ?</span>
             <svg class="faq-item__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-item__answer">
-            <p>Un flacon de 60ml dure en moyenne 1 mois avec une utilisation quotidienne (4 à 6 gouttes par application). C'est pourquoi nous recommandons la cure de 3 flacons : 3 mois d'utilisation pour des résultats durables.</p>
+            <p>Un flacon de 60ml dure en moyenne 6 à 8 semaines avec une utilisation quotidienne (4 à 6 sprays par application). Nous recommandons de commencer par une cure de 3 mois pour des résultats durables.</p>
           </div>
         </div>
       </div>
@@ -887,6 +861,7 @@
         <span id="omTotal">429 DH</span>
       </div>
       <div class="om-shipping">✅ Livraison gratuite · Paiement à la livraison</div>
+      <div class="om-guarantee" id="omGuaranteeBadge" style="display:none">🛡️ <strong>Garantie remboursement 90 jours incluse</strong> — zéro risque</div>
 
       <div class="om-divider"></div>
 
@@ -931,6 +906,6 @@
     </div>
   </div>
 
-  <script src="/script.js?v=2"></script>
+  <script src="/script.js?v=3"></script>
 </body>
 </html>
