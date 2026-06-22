@@ -488,7 +488,6 @@ ul, ol { list-style: none; }
   margin: 0 auto;
   padding: var(--section-v) clamp(20px, 5vw, 60px);
   width: 100%;
-  overflow: hidden;
 }
 
 /* IMAGE — left column, visible immediately */
@@ -3235,10 +3234,10 @@ html, body {
     display: none;
   }
 
-  /* Hero inner: strict single column, no overflow */
+  /* Hero inner: strict single column */
   .hero__inner {
     grid-template-columns: 1fr !important;
-    overflow: hidden;
+    overflow-x: clip;
     padding-left: 16px !important;
     padding-right: 16px !important;
     gap: 1.2rem !important;
@@ -3287,9 +3286,9 @@ html, body {
     text-align: center;
   }
 
-  /* Sections: full width, no overflow */
+  /* Prevent horizontal overflow without blocking vertical scroll */
   section, .container {
-    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   /* Ingredient cards: always single column */
