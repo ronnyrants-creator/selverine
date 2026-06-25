@@ -1352,6 +1352,32 @@ ul, ol { list-style: none; }
 .masonry-item:hover { transform: scale(0.99); }
 .masonry-item .img-frame { border-radius: 0; }
 
+/* ── CERT SECTION ─────────────────────────────── */
+.cert-section {
+  background: var(--cream);
+  padding: 2.5rem 0 2rem;
+  text-align: center;
+}
+.cert-section__title {
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--forest);
+  opacity: .45;
+  margin-bottom: 1.5rem;
+}
+.cert-section__img {
+  max-width: 580px;
+  width: 90%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+@media (max-width: 480px) {
+  .cert-section__img { width: 100%; }
+}
+
 /* ── FAQ ──────────────────────────────────────── */
 .faq { padding: var(--section-v) 0; }
 .faq__header { text-align: center; margin-bottom: 4rem; }
@@ -1610,19 +1636,20 @@ ul, ol { list-style: none; }
   }
   .announce-sep { display: none; }
 
-  /* HERO */
+  /* HERO — mobile: content first, image below */
   .hero { min-height: auto; padding-top: 0; display: block; }
   .hero__inner {
     grid-template-columns: minmax(0, 1fr);
     min-width: 0;
-    gap: 1.5rem;
-    padding-top: clamp(1rem, 4vw, 2rem);
+    gap: 1.25rem;
+    padding-top: clamp(1rem, 4vw, 1.5rem);
     padding-bottom: clamp(1.5rem, 5vw, 3rem);
     text-align: center;
   }
-  .hero__headline--top { display: block; order: 0; margin-bottom: 0.5rem; font-size: clamp(2rem, 9vw, 2.8rem); line-height: 1.15; }
+  .hero__headline--top { display: block; order: 0; margin-bottom: 0.25rem; font-size: clamp(1.9rem, 8.5vw, 2.6rem); line-height: 1.15; }
   .hero__headline--desktop { display: none; }
-  .hero__image { order: 1; max-width: 380px; margin: 0 auto; width: 100%; min-width: 0; }
+  /* image right after headline, content below */
+  .hero__image { order: 1; width: 100%; min-width: 0; max-width: 100%; }
   .hero__content { max-width: 100%; order: 2; min-width: 0; }
   .hero__features { justify-content: center; }
   .hero__trust-badges { text-align: left; }
@@ -1881,6 +1908,11 @@ ul, ol { list-style: none; }
   align-items: center;
   gap: 0.6rem;
   margin-bottom: 1rem;
+}
+/* Hidden on mobile — stars + review count already shown in the trust ribbon.
+   Placed after the base rule above so it wins on source order at ≤640px. */
+@media (max-width: 640px) {
+  .hero__rating { display: none; }
 }
 .hero__stars-line {
   color: var(--gold);
@@ -2349,15 +2381,25 @@ ul, ol { list-style: none; }
 }
 .hero__trust-line svg { color: var(--forest); flex-shrink: 0; }
 
-/* ── TRUST CHIPS (below hero image) ──────────── */
+/* ── TRUST CHIPS (below CTA in hero left col) ─── */
 .hero__trust-chips {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.55rem;
-  margin-top: 0.85rem;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
 }
-@media (min-width: 641px) {
-  .hero__trust-chips { grid-template-columns: repeat(4, 1fr); }
+
+.hero__cert-badges {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 0 1.25rem;
+  opacity: .85;
+}
+@media (max-width: 768px) {
+  .hero__cert-badges { max-width: 100%; margin: 0 auto 1.25rem; }
 }
 
 /* ── FORM VALIDATION STATES ───────────────────── */

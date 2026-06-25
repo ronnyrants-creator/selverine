@@ -24,7 +24,11 @@ function serveFile(res, filePath) {
     if (err) { res.writeHead(404); res.end('Not found'); return; }
     const ext  = path.extname(filePath).toLowerCase();
     const mime = MIME[ext] || 'application/octet-stream';
-    res.writeHead(200, { 'Content-Type': mime });
+    res.writeHead(200, {
+      'Content-Type': mime,
+      // Dev: never cache static assets so edits show up on refresh
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+    });
     res.end(data);
   });
 }

@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const hero      = document.getElementById('hero');
 
   if (hero && stickyBar) {
+    // Only show sticky bar once the entire hero section has scrolled off screen
     new IntersectionObserver((entries) => {
       entries.forEach(e => stickyBar.classList.toggle('is-visible', !e.isIntersecting));
-    }, { threshold: 0.2 }).observe(hero);
+    }, { threshold: 0 }).observe(hero);
   }
 
   // ── STICKY BAR HEIGHT → CSS VAR (mobile only) ──────────────
@@ -84,7 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroCta           = document.getElementById('heroCta');
   const stickyPrice       = document.querySelector('.sticky-bar__price');
 
-  const bundleDetails = {
+  // Localized pages (e.g. /arabic) can override these labels by defining
+  // window.BUNDLE_LABELS before this script loads. Falls back to French.
+  const bundleDetails = window.BUNDLE_LABELS || {
     1: { name: 'Découverte',          desc: '1 flacon',               stickyNote: '1 flacon',  submitLabel: 'Commander — 269 DH →', heroLabel: 'Commencer ma routine · 269 DH →' },
     2: { name: 'Routine recommandée', desc: '2 flacons',              stickyNote: '2 flacons', submitLabel: 'Commander — 429 DH →', heroLabel: 'Commencer ma routine · 429 DH →' },
     3: { name: 'Cure complète',       desc: '3 flacons · garantie',   stickyNote: '3 flacons', submitLabel: 'Commander — 549 DH →', heroLabel: 'Commencer ma routine · 549 DH →' },

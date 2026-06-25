@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/style.css?v=9" />
+  <link rel="stylesheet" href="/style.css?v=10" />
   <link rel="preload" as="image" href="/images/hero-mobile.webp" type="image/webp" media="(max-width: 640px)" fetchpriority="high" />
   <link rel="preload" as="image" href="/images/hero.webp" type="image/webp" media="(min-width: 641px)" fetchpriority="high" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%231A3D32'/><text y='44' x='50%' text-anchor='middle' font-size='38' font-family='Georgia,serif' fill='%23F8F4EE'>S</text></svg>" />
@@ -148,6 +148,25 @@
           Paiement à la livraison · Aucune carte bancaire requise
         </p>
 
+        <!-- Trust chips -->
+        <div class="hero__trust-chips">
+          <div class="trust-chip">
+            <svg class="trust-chip__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="3"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <span class="trust-chip__value">COD</span>
+            <span class="trust-chip__label">Paiement livraison</span>
+          </div>
+          <div class="trust-chip">
+            <svg class="trust-chip__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            <span class="trust-chip__value">✓</span>
+            <span class="trust-chip__label">Dermato-testé</span>
+          </div>
+          <div class="trust-chip">
+            <svg class="trust-chip__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8"><path d="M10 2h4l1 4-2 1-2-1z"/><path d="M12 7v10M8 11h8"/><circle cx="12" cy="19" r="2"/></svg>
+            <span class="trust-chip__value">60ml</span>
+            <span class="trust-chip__label">Par flacon</span>
+          </div>
+        </div>
+
         <!-- Stats -->
         <div class="hero__stats">
           <div class="hero__stat">
@@ -176,29 +195,6 @@
             <img src="/images/hero.webp" alt="SELVERINE — rituel capillaire premium"
                  width="1000" height="1000" fetchpriority="high" decoding="async" />
           </picture>
-        </div>
-        <!-- Trust badges -->
-        <div class="hero__trust-chips">
-          <div class="trust-chip">
-            <svg class="trust-chip__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="3"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-            <span class="trust-chip__value">COD</span>
-            <span class="trust-chip__label">Paiement livraison</span>
-          </div>
-          <div class="trust-chip">
-            <svg class="trust-chip__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-            <span class="trust-chip__value">✓</span>
-            <span class="trust-chip__label">Dermato-testé</span>
-          </div>
-          <div class="trust-chip">
-            <svg class="trust-chip__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span class="trust-chip__value">90J</span>
-            <span class="trust-chip__label">Garantie résultats</span>
-          </div>
-          <div class="trust-chip">
-            <svg class="trust-chip__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B99A5A" stroke-width="1.8"><path d="M10 2h4l1 4-2 1-2-1z"/><path d="M12 7v10M8 11h8"/><circle cx="12" cy="19" r="2"/></svg>
-            <span class="trust-chip__value">60ml</span>
-            <span class="trust-chip__label">Par flacon</span>
-          </div>
         </div>
       </div>
 
@@ -644,6 +640,15 @@
         </div>
 
       </div>
+
+    </div>
+  </section>
+
+  <!-- ─── CERT BADGES ──────────────────────────────────────────── -->
+  <section class="cert-section fade-up">
+    <div class="container">
+      <p class="cert-section__title">Nos produits sont certifiés</p>
+      <img src="/images/cert-badges.png" alt="ISO 9001 · DMP · ONSSA · BPF certifiés" class="cert-section__img" loading="lazy" decoding="async" />
     </div>
   </section>
 
@@ -875,6 +880,6 @@
     </div>
   </div>
 
-  <script src="/script.js?v=5"></script>
+  <script src="/script.js?v=7"></script>
 </body>
 </html>
