@@ -15,4 +15,7 @@ build/
 
 # Local SQLite runtime DB (host creates its own via DB_PATH)
 *.db
+*.db-shm
+*.db-wal
+*.db-journal
 tsconfig.tsbuildinfo

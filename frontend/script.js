@@ -2,7 +2,94 @@
    SELVERINE — Premium Landing Page Scripts
 ═══════════════════════════════════════════════ */
 
+/* ───────────────────────────────────────────────
+   Facebook / Meta Pixel helper
+   The pixel itself (fbq init + PageView) is injected server-side from
+   FACEBOOK_PIXEL_ID. This helper captures the Facebook click identifiers
+   (_fbp / _fbc / fbclid), fires standard events, and produces a shared
+   event_id so the browser Pixel and the server Conversions API deduplicate.
+─────────────────────────────────────────────── */
+const SLVPixel = (function () {
+  function cookie(name) {
+    const m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return m ? decodeURIComponent(m.pop()) : '';
+  }
+  function param(name) {
+    return new URLSearchParams(location.search).get(name) || '';
+  }
+  function uuid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+      const r = (Math.random() * 16) | 0;
+      return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
+    });
+  }
+  // Persist fbclid → fbc for up to the session if the cookie isn't set yet.
+  const fbclid = param('fbclid');
+  if (fbclid && !cookie('_fbc')) {
+    try { localStorage.setItem('slv_fbclid', fbclid); } catch (e) {}
+  }
+  function getFbclid() {
+    return fbclid || (function () { try { return localStorage.getItem('slv_fbclid') || ''; } catch (e) { return ''; } })();
+  }
+  function getFbc() {
+    const c = cookie('_fbc');
+    if (c) return c;
+    const id = getFbclid();
+    return id ? `fb.1.${Date.now()}.${id}` : '';
+  }
+  function cfg() { return window.SELVERINE_PIXEL || {}; }
+  function ready() { return typeof window.fbq === 'function'; }
+
+  return {
+    available: ready,
+    data() {
+      return { fbp: cookie('_fbp'), fbc: getFbc(), fbclid: getFbclid() };
+    },
+    newEventId: uuid,
+    track(event, custom, eventId) {
+      if (!ready()) return;
+      try {
+        const opts = eventId ? { eventID: eventId } : undefined;
+        window.fbq('track', event, custom || {}, opts);
+      } catch (e) { /* never break UX for analytics */ }
+    },
+    viewContent() {
+      const c = cfg();
+      this.track('ViewContent', {
+        content_name: c.productName || 'SELVERINE',
+        content_ids: [c.productId || 'selverine'],
+        content_type: 'product',
+        currency: c.currency || 'MAD',
+      });
+    },
+    initiateCheckout(value) {
+      const c = cfg();
+      this.track('InitiateCheckout', {
+        content_ids: [c.productId || 'selverine'],
+        content_type: 'product',
+        currency: c.currency || 'MAD',
+        value: Number(value) || 0,
+      });
+    },
+    purchase(value, quantity, eventId) {
+      const c = cfg();
+      this.track('Purchase', {
+        content_name: c.productName || 'SELVERINE',
+        content_ids: [c.productId || 'selverine'],
+        content_type: 'product',
+        contents: [{ id: c.productId || 'selverine', quantity: Number(quantity) || 1 }],
+        currency: c.currency || 'MAD',
+        value: Number(value) || 0,
+      }, eventId);
+    },
+  };
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Fire ViewContent once the product page is ready.
+  SLVPixel.viewContent();
 
   // ── SCROLL ANIMATIONS ──────────────────────────────────────
   const revealObserver = new IntersectionObserver((entries) => {
@@ -159,6 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
     orderModal.classList.add('is-open');
     orderModal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
+    SLVPixel.initiateCheckout(selectedBundle.price || 429);
     setTimeout(() => document.getElementById('mName')?.focus(), 350);
   }
   function closeOrderModal() {
@@ -423,6 +511,9 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const ref = `SLV-${Date.now().toString(36).toUpperCase()}`;
         let orderRef = ref;
+        const eventId = SLVPixel.newEventId();
+        const fb = SLVPixel.data();
+        const pcfg = window.SELVERINE_PIXEL || {};
 
         try {
           const res = await fetch('/api/orders', {
@@ -432,6 +523,12 @@ document.addEventListener('DOMContentLoaded', () => {
               name, phone, city,
               bundle: selectedBundle.bundle || 2,
               total:  selectedBundle.price  || 429,
+              quantity: selectedBundle.bundle || 2,
+              price:    selectedBundle.price  || 429,
+              currency: pcfg.currency || 'MAD',
+              product_name: pcfg.productName, product_id: pcfg.productId,
+              fbp: fb.fbp, fbc: fb.fbc, fbclid: fb.fbclid,
+              event_id: eventId,
               ref,
             }),
           });
@@ -440,6 +537,9 @@ document.addEventListener('DOMContentLoaded', () => {
             orderRef = data.ref || ref;
           }
         } catch { /* offline / API down — still show thank-you */ }
+
+        // Fire the browser Pixel Purchase with the shared event_id (dedup w/ CAPI).
+        SLVPixel.purchase(selectedBundle.price || 429, selectedBundle.bundle || 2, eventId);
 
         const firstName = name.split(' ')[0];
         const bundleInfo = bundleDetails[selectedBundle.bundle] || bundleDetails[2];
@@ -515,6 +615,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const ref = `SLV-${Date.now().toString(36).toUpperCase()}`;
       let orderRef = ref;
+      const eventId = SLVPixel.newEventId();
+      const fb = SLVPixel.data();
+      const pcfg = window.SELVERINE_PIXEL || {};
       try {
         const res = await fetch('/api/orders', {
           method:  'POST',
@@ -523,11 +626,19 @@ document.addEventListener('DOMContentLoaded', () => {
             name, phone, city,
             bundle: selectedBundle.bundle || 2,
             total:  selectedBundle.price  || 429,
+            quantity: selectedBundle.bundle || 2,
+            price:    selectedBundle.price  || 429,
+            currency: pcfg.currency || 'MAD',
+            product_name: pcfg.productName, product_id: pcfg.productId,
+            fbp: fb.fbp, fbc: fb.fbc, fbclid: fb.fbclid,
+            event_id: eventId,
             ref,
           }),
         });
         if (res.ok) { const data = await res.json(); orderRef = data.ref || ref; }
       } catch { /* offline / API down — still show thank-you */ }
+
+      SLVPixel.purchase(selectedBundle.price || 429, selectedBundle.bundle || 2, eventId);
 
       const firstName  = name.split(' ')[0];
       const bundleInfo = bundleDetails[selectedBundle.bundle] || bundleDetails[2];

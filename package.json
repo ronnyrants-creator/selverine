@@ -1,13 +1,18 @@
 {
   "name": "selverine",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
+  "description": "SELVERINE ecommerce backend — orders, admin dashboard, Facebook Pixel & Meta Conversion API",
   "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "better-sqlite3": "^12.10.1"
   }
 }
