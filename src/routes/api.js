@@ -155,6 +155,7 @@ function health(req, res) {
     status: 'ok',
     pixel: Boolean(config.facebookPixelId),
     capi: config.meta.enabled,
+    sheets: Boolean(process.env.GOOGLE_SHEETS_ID && process.env.GOOGLE_SHEETS_KEY),
     time: new Date().toISOString(),
   });
 }
