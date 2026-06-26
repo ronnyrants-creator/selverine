@@ -20,11 +20,11 @@ const orders = require('../services/orders');
 const analytics = require('../services/analytics');
 const views = require('../admin/views');
 const auth = require('../auth');
-const { sendHtml, redirect, readFormBody, cleanStr, getClientIp } = require('../util');
+const { sendHtml, redirect, readFormBody, cleanStr, getClientIp, formatDate } = require('../util');
 
 // ── Export: ONLY clean business fields. No IDs/secrets/technical data ever. ──
 const EXPORT_FIELDS = [
-  ['Date', (o) => (o.created_at || '').slice(0, 10)],
+  ['Date', (o) => formatDate(o.created_at, false)],
   ['Order ID', (o) => o.ref || String(o.id)],
   ['Country', (o) => o.country || ''],
   ['Customer Name', (o) => o.customer_name || o.name || ''],

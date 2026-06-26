@@ -198,6 +198,27 @@ function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value));
 }
 
+// ── Dates ── timestamps are stored in UTC; display them in Morocco time.
+const APP_TZ = process.env.APP_TZ || 'Africa/Casablanca';
+
+/** Today's date (YYYY-MM-DD) in Morocco time — for "today" stat queries. */
+function localToday() {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: APP_TZ }).format(new Date());
+}
+
+/** Format a UTC 'YYYY-MM-DD HH:MM:SS' string in Morocco time. */
+function formatDate(utc, withTime = true) {
+  if (!utc) return '';
+  const d = new Date(`${String(utc).replace(' ', 'T')}Z`);
+  if (isNaN(d.getTime())) return String(utc);
+  const p = new Intl.DateTimeFormat('en-GB', {
+    timeZone: APP_TZ, year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', hour12: false,
+  }).formatToParts(d).reduce((a, x) => ((a[x.type] = x.value), a), {});
+  const date = `${p.year}-${p.month}-${p.day}`;
+  return withTime ? `${date} ${p.hour}:${p.minute}` : date;
+}
+
 const ORDER_STATUSES = ['Pending', 'Confirmed', 'Cancelled', 'Delivered'];
 function isValidStatus(value) {
   return ORDER_STATUSES.includes(value);
@@ -208,4 +229,5 @@ module.exports = {
   parseCookies, setCookie, clearCookie, appendHeader, getClientIp,
   sha256, hashNormalized, signValue, verifySignedValue, randomToken, generateEventId,
   escapeHtml, cleanStr, isValidPhone, isValidEmail, isValidStatus, ORDER_STATUSES,
+  formatDate, localToday, APP_TZ,
 };

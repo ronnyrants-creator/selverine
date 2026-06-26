@@ -69,8 +69,23 @@ const insertVisit = db.prepare(`
   VALUES (@path, @page, @visitor_id, @ip, @ua, @device, @browser, @os, @country, @referrer, @fbclid, @is_owner)
 `);
 
+// De-dup guard: browsers can fire a page load twice (prefetch, bf-cache, rapid
+// reloads) — collapse identical loads from the same client+path inside a short
+// window so a single visit is counted once.
+const recentDup = db.prepare(`
+  SELECT 1 FROM visits
+  WHERE path = @path
+    AND (visitor_id = @visitor_id OR ip = @ip)
+    AND created_at >= datetime('now', '-8 seconds')
+  LIMIT 1
+`);
+
 function recordVisit({ path, ip, ua, country, referrer, visitorId, fbclid }) {
   try {
+    const p = (path || '').slice(0, 200);
+    if (recentDup.get({ path: p, visitor_id: visitorId || null, ip: ip || null })) {
+      return; // duplicate of a visit recorded moments ago — skip
+    }
     insertVisit.run({
       path: (path || '').slice(0, 200),
       page: pageOf(path),
@@ -98,9 +113,10 @@ function summary() {
   const uniqueVisitors = db.prepare(
     `SELECT COUNT(DISTINCT COALESCE(visitor_id, ip)) n FROM visits WHERE ${NOT_OWNER}`
   ).get().n;
+  const { localToday } = require('../util');
   const todayVisits = db.prepare(
-    `SELECT COUNT(*) n FROM visits WHERE ${NOT_OWNER} AND date(created_at) = date('now')`
-  ).get().n;
+    `SELECT COUNT(*) n FROM visits WHERE ${NOT_OWNER} AND date(created_at, '+1 hour') = @d`
+  ).get({ d: localToday() }).n;
   const totalOrders = db.prepare(`SELECT COUNT(*) n FROM orders`).get().n;
   const conversionRate = uniqueVisitors > 0 ? (totalOrders / uniqueVisitors) * 100 : 0;
   return {

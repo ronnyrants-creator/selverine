@@ -193,9 +193,10 @@ function getStats() {
     .reduce((acc, r) => ((acc[r.status] = r.n), acc), {});
 
   const total = db.prepare(`SELECT COUNT(*) AS n FROM orders`).get().n;
+  const { localToday } = require('../util');
   const today = db
-    .prepare(`SELECT COUNT(*) AS n FROM orders WHERE date(created_at) = date('now')`)
-    .get().n;
+    .prepare(`SELECT COUNT(*) AS n FROM orders WHERE date(created_at, '+1 hour') = ?`)
+    .get(localToday()).n;
 
   // Revenue counts confirmed + delivered orders (realised revenue).
   const revenue = db

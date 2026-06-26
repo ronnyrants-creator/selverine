@@ -8,7 +8,7 @@
  * script. Layout is a responsive sidebar shell.
  */
 
-const { escapeHtml, ORDER_STATUSES } = require('../util');
+const { escapeHtml, ORDER_STATUSES, formatDate } = require('../util');
 
 const STATUS_COLORS = {
   Pending: '#e0992f',
@@ -61,11 +61,14 @@ a{color:inherit;text-decoration:none}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:24px}
 .stat{background:linear-gradient(160deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);
   padding:18px;position:relative;overflow:hidden;opacity:0;transform:translateY(14px);animation:fade .6s ease forwards}
-.stat:hover{border-color:#2f3a4f}
+.stat{transition:transform .2s ease,box-shadow .25s ease,border-color .2s ease}
+.stat:hover{border-color:#3a465e;transform:translateY(-3px);box-shadow:0 18px 42px rgba(0,0,0,.4)}
+.stat::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .25s}
+.stat:hover::after{opacity:.7}
 .stat__ic{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;background:#1c2433}
 .stat__ic svg{width:19px;height:19px}
 .stat__label{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600}
-.stat__num{font-size:30px;font-weight:800;margin-top:5px;letter-spacing:-.02em;line-height:1}
+.stat__num{font-size:30px;font-weight:800;margin-top:5px;letter-spacing:-.02em;line-height:1;background:linear-gradient(135deg,#ffffff,#d8bd86);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .stat__sub{font-size:12px;color:var(--muted2);margin-top:6px}
 .stat--accent{background:linear-gradient(160deg,#1c3a30,#13261f);border-color:#2a5142}
 /* Panels */
@@ -347,7 +350,7 @@ function ordersPage({ result, filters, countries, csrf }) {
       <td class="right">${price} ${escapeHtml(o.currency || '')}</td>
       <td><form class="inline" method="POST" action="/admin/orders/${o.id}/status"><input type="hidden" name="_csrf" value="${escapeHtml(csrf)}"><input type="hidden" name="redirect" value="${escapeHtml(qs({}))}">
         <select class="status-select" name="status" onchange="this.form.submit()">${opts}</select></form></td>
-      <td class="muted">${escapeHtml((o.created_at || '').slice(0, 16))}</td>
+      <td class="muted">${escapeHtml(formatDate(o.created_at))}</td>
       <td><div class="actions"><a class="btn btn--sm" href="/admin/orders/${o.id}">View</a>
         <form class="inline" method="POST" action="/admin/orders/${o.id}/delete" onsubmit="return confirm('Delete order #${o.id}?')">
           <input type="hidden" name="_csrf" value="${escapeHtml(csrf)}"><input type="hidden" name="redirect" value="${escapeHtml(qs({}))}">
@@ -413,7 +416,7 @@ function orderDetailPage({ order, csrf }) {
     <div class="dcard" style="animation-delay:0ms"><h3>Customer</h3>${kv('Name', order.customer_name || order.name)}${kv('Phone', order.customer_phone || order.phone)}${kv('Email', order.customer_email)}</div>
     <div class="dcard" style="animation-delay:60ms"><h3>Shipping</h3>${kv('Country', order.country)}${kv('City', order.city)}${kv('Address', order.address)}</div>
     <div class="dcard" style="animation-delay:120ms"><h3>Product</h3>${kv('Product', order.product_name)}${kv('SKU', order.product_id)}${kv('Quantity', order.quantity)}${kv('Price', `${order.price} ${order.currency || ''}`)}</div>
-    <div class="dcard" style="animation-delay:180ms"><h3>Tracking</h3>${kv('Reference', order.ref)}${kv('Status', order.status)}${kv('Landing page', order.source === 'ar' ? 'Arabic' : order.source === 'fr' ? 'French' : '—')}${kv('Created', order.created_at)}${kv('Updated', order.updated_at)}</div>
+    <div class="dcard" style="animation-delay:180ms"><h3>Tracking</h3>${kv('Reference', order.ref)}${kv('Status', order.status)}${kv('Landing page', order.source === 'ar' ? 'Arabic' : order.source === 'fr' ? 'French' : '—')}${kv('Created', formatDate(order.created_at))}${kv('Updated', formatDate(order.updated_at))}</div>
     <div class="dcard" style="animation-delay:240ms"><h3>Facebook</h3>${kv('Event ID', order.event_id)}${kv('fbclid', order.fbclid)}${kv('fbc', order.fbc)}${kv('fbp', order.fbp)}${kv('CAPI status', order.capi_status)}</div>
     <div class="dcard" style="animation-delay:300ms"><h3>Browser</h3>${kv('IP address', order.ip_address)}${kv('User agent', order.user_agent)}</div>
     <div class="dcard" style="animation-delay:360ms"><h3>Notes</h3><div class="muted" style="white-space:pre-wrap">${escapeHtml(order.notes || '') || '—'}</div></div>

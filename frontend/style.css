@@ -3487,3 +3487,26 @@ html, body {
     padding-bottom: calc(1.5rem + 90px + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════════
+   CRO — gentle attention pulse on primary CTAs (both LPs)
+   Slow, subtle gold glow that draws the eye to the action without
+   feeling spammy. Respects reduced-motion preferences.
+   ════════════════════════════════════════════════════════════ */
+@keyframes cta-attention {
+  0%, 100% { box-shadow: 0 8px 22px rgba(26,61,50,0.18); }
+  50%      { box-shadow: 0 10px 30px rgba(185,154,90,0.45); }
+}
+.hero-cta,
+.cta-final__btn,
+.sticky-bar__cta,
+.om-submit {
+  animation: cta-attention 2.8s ease-in-out infinite;
+}
+.hero-cta:hover,
+.cta-final__btn:hover,
+.sticky-bar__cta:hover,
+.om-submit:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta, .cta-final__btn, .sticky-bar__cta, .om-submit { animation: none; }
+}
