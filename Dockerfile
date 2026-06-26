@@ -7,7 +7,7 @@ FROM node:20-alpine AS base
 FROM base AS deps
 RUN apk add --no-cache libc6-compat python3 make g++
 WORKDIR /app
-RUN npm install --omit=dev better-sqlite3@^12.10.1 bcryptjs@^2.4.3
+RUN npm install --omit=dev better-sqlite3@^12.10.1 bcryptjs@^2.4.3 google-auth-library@^9.15.1
 
 # ── runner: plain Node HTTP server serving frontend/ + API + /admin ──
 FROM base AS runner

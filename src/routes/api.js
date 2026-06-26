@@ -17,6 +17,7 @@ const { config } = require('../config');
 const orders = require('../services/orders');
 const meta = require('../services/meta');
 const webhooks = require('../services/webhooks');
+const sheets = require('../services/googleSheets');
 const { getSession } = require('../auth');
 const {
   sendJson, readJsonBody, getClientIp, generateEventId,
@@ -102,6 +103,9 @@ async function createOrder(req, res) {
 
   // ── Fire-and-forget side effects (never block / break the response) ──
   webhooks.dispatch('order.created', publicOrderView(order)).catch(() => {});
+  sheets.appendOrder(publicOrderView(order)).catch((e) =>
+    console.error('[sheets] append failed:', e.message)
+  );
 
   meta
     .sendPurchase(order, {
