@@ -28,7 +28,7 @@ const insertStmt = db.prepare(`
     status,
     ip_address, user_agent,
     fbclid, fbc, fbp,
-    event_id, notes,
+    event_id, source, notes,
     name, phone, bundle, total
   ) VALUES (
     @ref, @created_at, @updated_at,
@@ -38,7 +38,7 @@ const insertStmt = db.prepare(`
     @status,
     @ip_address, @user_agent,
     @fbclid, @fbc, @fbp,
-    @event_id, @notes,
+    @event_id, @source, @notes,
     @name, @phone, @bundle, @total
   )
 `);
@@ -71,6 +71,7 @@ function createOrder(data) {
     fbc: data.fbc || null,
     fbp: data.fbp || null,
     event_id: data.event_id || null,
+    source: data.source || null,
     notes: data.notes || null,
     // legacy mirror columns
     name: data.customer_name || '',

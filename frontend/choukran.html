@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>شكراً على طلبك — SELVERINE</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest: #1A3D32;
+      --forest-light: #2A5445;
+      --clay: #C8956B;
+      --cream: #F8F4EE;
+      --cream-dark: #EFE9DF;
+      --gray: #7A7672;
+      --gray-dark: #2C2926;
+      --sans: 'Cairo', system-ui, sans-serif;
+      --radius: 20px;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--gray-dark);
+      min-height: 100vh;
+      padding: 0 1rem 3rem;
+      direction: rtl;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar { display: flex; align-items: center; justify-content: center; padding: 1.1rem 0 0; }
+    .topbar__logo {
+      font-size: 1.25rem; font-weight: 800; color: var(--forest);
+      text-decoration: none; letter-spacing: 0.08em;
+    }
+
+    /* ── WRAPPER ── */
+    .page {
+      max-width: 440px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 1.1rem; padding-top: 1.8rem;
+    }
+
+    /* ── SUCCESS HERO ── */
+    .hero-check {
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      gap: 0.9rem; opacity: 0; animation: fade-up 0.6s ease forwards;
+    }
+    .check-ring {
+      width: 72px; height: 72px; border-radius: 50%; background: var(--forest);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 0 rgba(26,61,50,0.3);
+      animation: ring-pulse 2.2s ease 0.7s infinite;
+    }
+    .check-ring svg { stroke-dasharray: 28; stroke-dashoffset: 28; animation: draw-check 0.5s ease 0.35s forwards; }
+    @keyframes draw-check { to { stroke-dashoffset: 0; } }
+    @keyframes ring-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(26,61,50,0.25); }
+      60%  { box-shadow: 0 0 0 14px rgba(26,61,50,0); }
+      100% { box-shadow: 0 0 0 0 rgba(26,61,50,0); }
+    }
+    .hero-check h1 { font-size: 1.7rem; font-weight: 700; color: var(--gray-dark); line-height: 1.3; }
+    .hero-check h1 em { font-style: normal; color: var(--forest); }
+    .hero-check p { font-size: 0.98rem; color: var(--gray); line-height: 1.8; max-width: 340px; }
+
+    /* ── CARD BASE ── */
+    .card { background: #fff; border-radius: var(--radius); padding: 1.3rem 1.25rem; box-shadow: 0 2px 12px rgba(0,0,0,0.05); opacity: 0; }
+    .card--order { animation: fade-up 0.55s ease 0.3s forwards; }
+    .card--steps { animation: fade-up 0.55s ease 0.5s forwards; }
+    .card__title {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: var(--gray);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.4rem;
+    }
+
+    /* ── ORDER SUMMARY ── */
+    .order-rows { display: flex; flex-direction: column; gap: 0; }
+    .order-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 0.55rem 0; border-bottom: 1px solid #F0EBE4; font-size: 0.95rem;
+    }
+    .order-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .order-row__label { color: var(--gray); }
+    .order-row__val { font-weight: 600; color: var(--gray-dark); text-align: left; }
+    .order-row--total .order-row__label { font-weight: 700; font-size: 0.98rem; color: var(--gray-dark); }
+    .order-row--total .order-row__val { font-size: 1.2rem; font-weight: 700; color: var(--forest); }
+
+    .order-badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      background: #EDF5F1; color: var(--forest); font-size: 0.78rem; font-weight: 600;
+      border-radius: 20px; padding: 0.3em 0.8em; margin-top: 0.9rem;
+    }
+
+    /* ── STEPS ── */
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step { display: flex; gap: 0.9rem; padding: 0.9rem 0; border-bottom: 1px solid #F0EBE4; opacity: 0; }
+    .step:last-child { border-bottom: none; padding-bottom: 0; }
+    .step:nth-child(1) { animation: fade-right 0.4s ease 0.65s forwards; }
+    .step:nth-child(2) { animation: fade-right 0.4s ease 0.82s forwards; }
+    .step:nth-child(3) { animation: fade-right 0.4s ease 0.99s forwards; }
+    .step:nth-child(4) { animation: fade-right 0.4s ease 1.16s forwards; }
+    .step__icon {
+      width: 38px; height: 38px; border-radius: 11px; background: var(--cream-dark);
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    }
+    .step__icon svg { stroke: var(--gray); }
+    .step--active .step__icon { background: var(--forest); }
+    .step--active .step__icon svg { stroke: #fff; }
+    .step__body { flex: 1; }
+    .step__title { font-size: 0.98rem; font-weight: 600; color: var(--gray); margin-bottom: 0.18rem; }
+    .step--active .step__title { color: var(--gray-dark); }
+    .step__desc { font-size: 0.88rem; color: #b0a99f; line-height: 1.7; }
+    .step--active .step__desc { color: var(--gray); }
+    .step__tag {
+      display: inline-block; margin-top: 0.35rem; font-size: 0.72rem; font-weight: 700;
+      color: var(--forest); background: #EDF5F1; border-radius: 20px; padding: 0.2em 0.7em;
+    }
+
+    /* ── TRUST STRIP ── */
+    .trust-strip { display: flex; justify-content: center; gap: 1.5rem; opacity: 0; animation: fade-up 0.5s ease 1.3s forwards; }
+    .trust-item { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; font-size: 0.78rem; color: var(--gray); font-weight: 600; text-align: center; }
+    .trust-item__icon {
+      width: 42px; height: 42px; border-radius: 13px; background: var(--forest);
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(26,61,50,0.18);
+    }
+
+    /* ── BACK LINK ── */
+    .back-link { text-align: center; font-size: 0.9rem; opacity: 0; animation: fade-up 0.5s ease 1.5s forwards; }
+    .back-link a { color: var(--forest); text-decoration: none; font-weight: 600; }
+    .back-link a:hover { text-decoration: underline; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fade-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fade-right { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="/arabic" class="topbar__logo">SELVERINE</a>
+  </div>
+
+  <main class="page">
+
+    <!-- Success hero -->
+    <div class="hero-check">
+      <div class="check-ring">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <div>
+        <h1>شكراً، <em id="thankyouName">لكِ</em>!</h1>
+        <p style="margin-top:0.5rem">تمّ تأكيد طلبك. سيتّصل بك فريقنا خلال <strong>ساعتين</strong> لإتمام التوصيل.</p>
+      </div>
+    </div>
+
+    <!-- Order summary -->
+    <div class="card card--order">
+      <p class="card__title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M3 8h18l-2 13H5Z"/></svg>
+        ملخّص الطلب
+      </p>
+      <div class="order-rows">
+        <div class="order-row">
+          <span class="order-row__label">رقم الطلب</span>
+          <span class="order-row__val" id="thankyouRef">—</span>
+        </div>
+        <div class="order-row">
+          <span class="order-row__label">العرض</span>
+          <span class="order-row__val" id="thankyouBundle">—</span>
+        </div>
+        <div class="order-row order-row--total">
+          <span class="order-row__label">المجموع</span>
+          <span class="order-row__val" id="thankyouTotal">—</span>
+        </div>
+      </div>
+      <div class="order-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        الدفع عند الاستلام — دون أي بطاقة بنكية
+      </div>
+    </div>
+
+    <!-- Steps -->
+    <div class="card card--steps">
+      <p class="card__title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        ما الذي سيحدث الآن
+      </p>
+      <div class="steps">
+
+        <div class="step step--active">
+          <div class="step__icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V19a2 2 0 01-2.18 2A19.79 19.79 0 013 4.18 2 2 0 015 2h2.09a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="step__body">
+            <p class="step__title">مكالمة التأكيد</p>
+            <p class="step__desc">سنتّصل بك خلال <strong>ساعتين</strong> لتأكيد عنوانك وعرضك.</p>
+            <span class="step__tag">جارٍ الآن — هاتفك قريب منك</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10V4a1 1 0 00-1-1H4a1 1 0 00-1 1v6"/><rect x="1" y="10" width="22" height="11" rx="2"/><path d="M8 21v-5h8v5"/></svg>
+          </div>
+          <div class="step__body">
+            <p class="step__title">التحضير والشحن</p>
+            <p class="step__desc">يُحضَّر طردك ويُشحن خلال <strong>24 إلى 48 ساعة</strong> في كل أنحاء المغرب.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="step__body">
+            <p class="step__title">التوصيل إلى باب المنزل</p>
+            <p class="step__desc">يتّصل بك عامل التوصيل قبل وصوله. تدفعين <strong>نقداً</strong> عند الاستلام — دون أي مخاطرة.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 017 7c0 4-7 13-7 13S5 13 5 9a7 7 0 017-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+          <div class="step__body">
+            <p class="step__title">ابدئي روتينك</p>
+            <p class="step__desc">من 4 إلى 6 رشّات كل مساء على فروة الرأس. نتائج واضحة ابتداءً من <strong>الأسبوع الرابع</strong>.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Trust -->
+    <div class="trust-strip">
+      <div class="trust-item">
+        <div class="trust-item__icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <span>دفع آمن</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item__icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span>مضمون أو نُعيد لك مالك</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item__icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <span>توصيل داخل المغرب</span>
+      </div>
+    </div>
+
+    <!-- Back -->
+    <p class="back-link">
+      <a href="/arabic">→ العودة إلى الصفحة الرئيسية</a>
+    </p>
+
+  </main>
+
+  <script>
+    (function () {
+      const p = new URLSearchParams(window.location.search);
+      const stored = sessionStorage.getItem('selverine_order');
+      const data = stored ? JSON.parse(stored) : {};
+
+      const name   = p.get('name')   || data.name   || '';
+      const ref    = p.get('ref')    || data.ref    || '';
+      const total  = p.get('total')  || data.total  || '';
+      const bundle = p.get('bundle') || data.bundle || '';
+
+      const orderNum = 3501 + (parseInt((ref || '').replace(/[^0-9a-f]/gi,'').slice(-3) || '0', 16) % 99);
+      const displayRef = '#' + orderNum;
+
+      if (name)   document.getElementById('thankyouName').textContent = name;
+      if (ref)    document.getElementById('thankyouRef').textContent = displayRef;
+      if (bundle) document.getElementById('thankyouBundle').textContent = bundle;
+      if (total)  document.getElementById('thankyouTotal').textContent = total + ' درهم';
+    })();
+  </script>
+
+</body>
+</html>

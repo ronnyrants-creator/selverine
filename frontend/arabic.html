@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>سيلفيرين — عناية بالشعر</title>
-  <meta name="description" content="سيلفيرين — عناية بفروة الرأس. يقلّل تساقط الشعر ويقوّي نموه. الدفع عند الاستلام في المغرب." />
+  <title>سيلفيرين — زيت تقوية الشعر</title>
+  <meta name="description" content="سيلفيرين — زيت تقوية الشعر للعناية بفروة الرأس. يقلّل تساقط الشعر ويقوّي نموه. الدفع عند الاستلام في المغرب." />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/style.css?v=10" />
+  <link rel="stylesheet" href="/style.css?v=11" />
   <link rel="preload" as="image" href="/images/hero-ar.png" fetchpriority="high" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%231A3D32'/><text y='44' x='50%' text-anchor='middle' font-size='38' font-family='Georgia,serif' fill='%23F8F4EE'>S</text></svg>" />
   <style>
@@ -69,6 +69,32 @@
     .hero__rating-text  { font-size: 0.95rem; }
     .hero__stat-label   { font-size: 0.8rem; }
     .announce-text      { font-size: 0.92rem; }
+
+    /* ── Boldness ── Cairo at 400 reads thin in Arabic; give the copy more weight */
+    body { font-weight: 500; }
+    .section-body, .pain-card p, .ingredient-science, .ritual-card__content p,
+    .rootcause__step p, .timeline-item__content p, .faq-item__answer p,
+    .trust-card p, .cta-final__sub, .testi-slide__text { font-weight: 500; }
+    .hero__headline, .section-headline, .cta-final__headline { font-weight: 800; }
+    .eyebrow, .bundle-option__name, .om-bundle__name { font-weight: 700; }
+
+    /* ── Arabic hero image ── the branded image is a full portrait composition;
+       show it at its REAL dimensions instead of letterboxing it in a square
+       frame (which left empty cream space and looked cut off). */
+    .hero__image .img-frame--hero {
+      aspect-ratio: auto;
+      background: transparent;
+      border: none;
+      overflow: visible;
+    }
+    .hero__image .img-frame--hero img {
+      position: static;
+      inset: auto;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: transparent;
+    }
 
     /* Flip left/right layout for RTL */
     .hero__inner { direction: rtl; }
@@ -605,7 +631,7 @@
         <div class="ritual-card fade-up" data-delay="0">
           <div class="ritual-card__content">
             <span class="ritual-card__step">01</span>
-            <h3><strong>رشّي</strong> — بضع رشّات</h3>
+            <h3><strong>ضعي</strong> — بضع قطرات</h3>
             <p>مباشرةً على فروة الرأس الجافة أو الرطبة قليلاً. <strong>وليس على الشعر.</strong></p>
           </div>
           <div class="img-frame img-frame--portrait" data-ratio="4:5">
@@ -615,7 +641,7 @@
         <div class="ritual-card fade-up" data-delay="150">
           <div class="ritual-card__content">
             <span class="ritual-card__step">02</span>
-            <h3><strong>دلّكي</strong> — دقيقة واحدة</h3>
+            <h3><strong>دلّكي</strong> — دقيقتان</h3>
             <p>حركات دائرية بأطراف الأصابع. <strong>من هنا تبدأ الفائدة</strong> — تنشط الدورة الدموية.</p>
           </div>
           <div class="img-frame img-frame--portrait" data-ratio="4:5">
@@ -665,7 +691,7 @@
 
           <div class="testi-slide">
             <div class="testi-slide__stars">★★★★★</div>
-            <blockquote class="testi-slide__text">"بعد الولادة كان الشعر يتساقط بكثرة. الآن أصبح روتيني الليلي — بضع رشّات وينتهي الأمر."</blockquote>
+            <blockquote class="testi-slide__text">"بعد الولادة كان الشعر يتساقط بكثرة. الآن أصبح روتيني الليلي — بضع قطرات وينتهي الأمر."</blockquote>
             <cite class="testi-slide__name">فدوى الإدريسي</cite>
           </div>
 
@@ -948,7 +974,7 @@
           <img src="/images/product-cta.png" alt="SELVERINE" class="om-product__img" />
         </div>
         <div class="om-product__info">
-          <span class="om-product__name">سيلفيرين — روتين العناية بالشعر</span>
+          <span class="om-product__name">سيلفيرين — زيت تقوية الشعر</span>
           <span class="om-product__desc" id="omProductDesc">قارورتان</span>
         </div>
         <span class="om-product__price" id="omProductPrice">429 DH</span>
@@ -1006,7 +1032,9 @@
       2: { name: 'العناية المُوصى بها', desc: 'قارورتان',              stickyNote: 'قارورتان',     submitLabel: 'اطلبي — 429 DH →', heroLabel: 'اطلبي الآن · 429 DH →' },
       3: { name: 'العلاج الكامل',       desc: '3 قوارير · ضمان مشمول', stickyNote: '3 قوارير',     submitLabel: 'اطلبي — 549 DH →', heroLabel: 'اطلبي الآن · 549 DH →' },
     };
+    // Dedicated Arabic Thank-You page (script.js redirects here after an order).
+    window.THANKYOU_URL = '/choukran.html';
   </script>
-  <script src="/script.js?v=8"></script>
+  <script src="/script.js?v=9"></script>
 </body>
 </html>

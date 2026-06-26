@@ -96,6 +96,14 @@ const config = {
     apiVersion: env.META_API_VERSION || 'v19.0',
   },
 
+  // ── Analytics ──
+  // IPs to exclude from analytics (your own). Auto-learned IPs (from admin
+  // logins) are also excluded. Comma-separated.
+  ownerIps: (env.OWNER_IPS || '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean),
+
   // ── Webhooks ──
   webhookSecret: env.WEBHOOK_SECRET || '',
   // Optional outbound webhook target fired when an order is created/updated.

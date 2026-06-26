@@ -24,6 +24,10 @@ const apiRoutes = require('./src/routes/api');
 const webhookRoutes = require('./src/routes/webhooks');
 const adminRoutes = require('./src/routes/admin');
 const pixel = require('./src/services/pixel');
+const analytics = require('./src/services/analytics');
+const { parseCookies, setCookie, getClientIp, generateEventId } = require('./src/util');
+
+const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
 
 const FRONTEND = path.join(__dirname, 'frontend');
 
@@ -72,6 +76,29 @@ function serveStatic(req, res, route) {
 
     if (ext === '.html') {
       const html = pixel.injectInto(data.toString('utf8'));
+
+      // ── Analytics: record this page view (GET only) with a stable visitor id ──
+      if ((req.method || 'GET').toUpperCase() === 'GET') {
+        try {
+          const cookies = parseCookies(req);
+          let vid = cookies.slv_vid;
+          if (!vid) {
+            vid = generateEventId();
+            setCookie(res, 'slv_vid', vid, { httpOnly: true, sameSite: 'Lax', maxAge: ONE_YEAR_MS });
+          }
+          const url = new URL(req.url, config.appUrl);
+          analytics.recordVisit({
+            path: url.pathname,
+            ip: getClientIp(req),
+            ua: req.headers['user-agent'] || '',
+            country: req.headers['cf-ipcountry'] || '',
+            referrer: req.headers.referer || '',
+            visitorId: vid,
+            fbclid: url.searchParams.get('fbclid') || null,
+          });
+        } catch (e) { /* analytics must never break page serving */ }
+      }
+
       res.writeHead(200, {
         'Content-Type': mime,
         'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -121,6 +148,12 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(404, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'Not found' }));
       return;
+    }
+
+    // ── Clean URLs in production: never expose .html for pages with a clean route ──
+    if (config.isProd) {
+      if (route === '/index.html') { res.writeHead(301, { Location: '/' }); res.end(); return; }
+      if (route === '/arabic.html') { res.writeHead(301, { Location: '/arabic' }); res.end(); return; }
     }
 
     // ── Static frontend ──

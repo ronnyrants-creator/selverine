@@ -63,6 +63,8 @@ db.exec(`
     event_id       TEXT,
     capi_status    TEXT,
 
+    source         TEXT,          -- 'fr' | 'ar' (which landing page)
+
     notes          TEXT,
 
     -- legacy columns kept for backward compatibility with the old schema
@@ -100,6 +102,7 @@ const columnsToEnsure = {
   fbp: `fbp TEXT`,
   event_id: `event_id TEXT`,
   capi_status: `capi_status TEXT`,
+  source: `source TEXT`,
   notes: `notes TEXT`,
   name: `name TEXT`,
   phone: `phone TEXT`,
@@ -136,6 +139,44 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_orders_country       ON orders(country);
   CREATE INDEX IF NOT EXISTS idx_orders_product       ON orders(product_name);
   CREATE INDEX IF NOT EXISTS idx_orders_event_id      ON orders(event_id);
+`);
+
+// ── Analytics: page visits ──────────────────────────────────────────────────
+db.exec(`
+  CREATE TABLE IF NOT EXISTS visits (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    created_at  DATETIME DEFAULT (datetime('now')),
+    path        TEXT,
+    page        TEXT,          -- 'fr' | 'ar' | 'other'
+    visitor_id  TEXT,          -- cookie uuid (unique visitors)
+    ip          TEXT,
+    ua          TEXT,
+    device      TEXT,          -- mobile | tablet | desktop
+    browser     TEXT,
+    os          TEXT,
+    country     TEXT,
+    referrer    TEXT,
+    fbclid      TEXT,
+    is_owner    INTEGER DEFAULT 0
+  )
+`);
+db.exec(`
+  CREATE INDEX IF NOT EXISTS idx_visits_created_at ON visits(created_at);
+  CREATE INDEX IF NOT EXISTS idx_visits_page       ON visits(page);
+  CREATE INDEX IF NOT EXISTS idx_visits_country    ON visits(country);
+  CREATE INDEX IF NOT EXISTS idx_visits_device     ON visits(device);
+  CREATE INDEX IF NOT EXISTS idx_visits_browser    ON visits(browser);
+  CREATE INDEX IF NOT EXISTS idx_visits_visitor    ON visits(visitor_id);
+  CREATE INDEX IF NOT EXISTS idx_visits_is_owner   ON visits(is_owner);
+`);
+
+// ── Owner IPs (auto-learned from admin logins + OWNER_IPS env) — excluded from analytics ──
+db.exec(`
+  CREATE TABLE IF NOT EXISTS owner_ips (
+    ip       TEXT PRIMARY KEY,
+    added_at DATETIME DEFAULT (datetime('now')),
+    source   TEXT
+  )
 `);
 
 console.log(`[db] ready at ${config.databaseFile}`);

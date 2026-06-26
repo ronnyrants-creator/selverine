@@ -50,6 +50,9 @@ async function createOrder(req, res) {
   const quantity = Number(body.quantity || body.bundle) || 1;
   const price = Number(body.price ?? body.total) || 0;
   const eventId = cleanStr(body.event_id, 80) || generateEventId();
+  // Which landing page produced the order (for per-LP conversion analytics).
+  const referer = String(req.headers.referer || '');
+  const source = body.lang || (referer.includes('/arabic') ? 'ar' : 'fr');
 
   const orderData = {
     ref: cleanStr(body.ref, 60) || undefined,
@@ -71,6 +74,7 @@ async function createOrder(req, res) {
     fbc: cleanStr(body.fbc, 255) || null,
     fbp: cleanStr(body.fbp, 255) || null,
     event_id: eventId,
+    source,
     notes: cleanStr(body.notes, 1000) || null,
   };
 

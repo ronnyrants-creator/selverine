@@ -552,7 +552,8 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.setItem('selverine_order', JSON.stringify(orderData));
 
         const params = new URLSearchParams(orderData);
-        window.location.href = `/merci.html?${params.toString()}`;
+        const thankYouUrl = window.THANKYOU_URL || '/merci.html';
+        window.location.href = `${thankYouUrl}?${params.toString()}`;
         return;
 
       } catch {
@@ -649,7 +650,8 @@ document.addEventListener('DOMContentLoaded', () => {
         bundle: bundleInfo.name,
       };
       sessionStorage.setItem('selverine_order', JSON.stringify(orderData));
-      window.location.href = `/merci.html?${new URLSearchParams(orderData).toString()}`;
+      const thankYouUrl = window.THANKYOU_URL || '/merci.html';
+      window.location.href = `${thankYouUrl}?${new URLSearchParams(orderData).toString()}`;
     });
   }
 
