@@ -2,14 +2,6 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xd1c21h0g0");
-  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SELVERINE — Laboratoire Capillaire Premium</title>
   <meta name="description" content="SELVERINE — Le rituel quotidien du cuir chevelu conçu pour les femmes exigeantes. Science, élégance, efficacité." />
@@ -18,8 +10,11 @@
   <meta http-equiv="Expires" content="0" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/style.css?v=12" />
+  <link rel="dns-prefetch" href="https://www.clarity.ms" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="/style.css?v=13" as="style" />
+  <link rel="stylesheet" href="/style.css?v=13" />
+  <link rel="preload" href="/script.js?v=10" as="script" />
   <link rel="preload" as="image" href="/images/hero-mobile.webp" type="image/webp" media="(max-width: 640px)" fetchpriority="high" />
   <link rel="preload" as="image" href="/images/hero.webp" type="image/webp" media="(min-width: 641px)" fetchpriority="high" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%231A3D32'/><text y='44' x='50%' text-anchor='middle' font-size='38' font-family='Georgia,serif' fill='%23F8F4EE'>S</text></svg>" />
@@ -875,5 +870,13 @@
   </div>
 
   <script src="/script.js?v=10"></script>
+  <!-- Microsoft Clarity — deferred to avoid blocking HTML parse -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xd1c21h0g0");
+  </script>
 </body>
 </html>

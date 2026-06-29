@@ -482,7 +482,7 @@ ul, ol { list-style: none; }
   display: grid;
   /* Content left (offer), image right */
   grid-template-columns: 1fr 1fr;
-  align-items: start;
+  align-items: center;
   gap: 4rem;
   max-width: var(--container-max);
   margin: 0 auto;
@@ -1649,7 +1649,7 @@ ul, ol { list-style: none; }
   .hero__headline--top { display: block; order: 0; margin-bottom: 0.25rem; font-size: clamp(1.9rem, 8.5vw, 2.6rem); line-height: 1.15; }
   .hero__headline--desktop { display: none; }
   /* image right after headline, content below */
-  .hero__image { order: 1; width: 100%; min-width: 0; max-width: 100%; }
+  .hero__image { order: 1; width: 100%; min-width: 0; max-width: 420px; margin-left: auto; margin-right: auto; }
   .hero__content { max-width: 100%; order: 2; min-width: 0; }
   .hero__features { justify-content: center; }
   .hero__trust-badges { text-align: left; }
