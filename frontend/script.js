@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ── BUNDLE SELECTION ───────────────────────────────────────
-  let selectedBundle = { bundle: 2, price: 429 };
+  let selectedBundle = { bundle: 2, price: 349 };
 
   const bundleInput       = document.getElementById('bundleInput');
   const priceInput        = document.getElementById('priceInput');
@@ -175,9 +175,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Localized pages (e.g. /arabic) can override these labels by defining
   // window.BUNDLE_LABELS before this script loads. Falls back to French.
   const bundleDetails = window.BUNDLE_LABELS || {
-    1: { name: 'Découverte',          desc: '1 flacon',               stickyNote: '1 flacon',  submitLabel: 'Commander — 269 DH →', heroLabel: 'Commencer ma routine · 269 DH →' },
-    2: { name: 'Routine recommandée', desc: '2 flacons',              stickyNote: '2 flacons', submitLabel: 'Commander — 429 DH →', heroLabel: 'Commencer ma routine · 429 DH →' },
-    3: { name: 'Cure complète',       desc: '3 flacons · garantie',   stickyNote: '3 flacons', submitLabel: 'Commander — 549 DH →', heroLabel: 'Commencer ma routine · 549 DH →' },
+    1: { name: 'Découverte',          desc: '1 flacon',               stickyNote: '1 flacon',  submitLabel: 'Commander — 229 DH →', heroLabel: 'Commencer ma routine · 229 DH →' },
+    2: { name: 'Routine recommandée', desc: '2 flacons',              stickyNote: '2 flacons', submitLabel: 'Commander — 349 DH →', heroLabel: 'Commencer ma routine · 349 DH →' },
+    3: { name: 'Cure complète',       desc: '3 flacons · garantie',   stickyNote: '3 flacons', submitLabel: 'Commander — 469 DH →', heroLabel: 'Commencer ma routine · 469 DH →' },
   };
 
   function selectBundle(bundle, price) {
@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Init default (bundle 2)
-  selectBundle(2, 429);
+  selectBundle(2, 349);
 
 
   // ── ORDER MODAL ────────────────────────────────────────────
@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
     orderModal.classList.add('is-open');
     orderModal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
-    SLVPixel.initiateCheckout(selectedBundle.price || 429);
+    SLVPixel.initiateCheckout(selectedBundle.price || 349);
     setTimeout(() => document.getElementById('mName')?.focus(), 350);
   }
   function closeOrderModal() {
@@ -522,9 +522,9 @@ document.addEventListener('DOMContentLoaded', () => {
             body:    JSON.stringify({
               name, phone, city,
               bundle: selectedBundle.bundle || 2,
-              total:  selectedBundle.price  || 429,
+              total:  selectedBundle.price  || 349,
               quantity: selectedBundle.bundle || 2,
-              price:    selectedBundle.price  || 429,
+              price:    selectedBundle.price  || 349,
               currency: pcfg.currency || 'MAD',
               product_name: pcfg.productName, product_id: pcfg.productId,
               fbp: fb.fbp, fbc: fb.fbc, fbclid: fb.fbclid,
@@ -539,14 +539,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch { /* offline / API down — still show thank-you */ }
 
         // Fire the browser Pixel Purchase with the shared event_id (dedup w/ CAPI).
-        SLVPixel.purchase(selectedBundle.price || 429, selectedBundle.bundle || 2, eventId);
+        SLVPixel.purchase(selectedBundle.price || 349, selectedBundle.bundle || 2, eventId);
 
         const firstName = name.split(' ')[0];
         const bundleInfo = bundleDetails[selectedBundle.bundle] || bundleDetails[2];
         const orderData = {
           name: firstName,
           ref: orderRef,
-          total: String(selectedBundle.price || 429),
+          total: String(selectedBundle.price || 349),
           bundle: bundleInfo.name,
         };
         sessionStorage.setItem('selverine_order', JSON.stringify(orderData));
@@ -626,9 +626,9 @@ document.addEventListener('DOMContentLoaded', () => {
           body:    JSON.stringify({
             name, phone, city,
             bundle: selectedBundle.bundle || 2,
-            total:  selectedBundle.price  || 429,
+            total:  selectedBundle.price  || 349,
             quantity: selectedBundle.bundle || 2,
-            price:    selectedBundle.price  || 429,
+            price:    selectedBundle.price  || 349,
             currency: pcfg.currency || 'MAD',
             product_name: pcfg.productName, product_id: pcfg.productId,
             fbp: fb.fbp, fbc: fb.fbc, fbclid: fb.fbclid,
@@ -639,14 +639,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (res.ok) { const data = await res.json(); orderRef = data.ref || ref; }
       } catch { /* offline / API down — still show thank-you */ }
 
-      SLVPixel.purchase(selectedBundle.price || 429, selectedBundle.bundle || 2, eventId);
+      SLVPixel.purchase(selectedBundle.price || 349, selectedBundle.bundle || 2, eventId);
 
       const firstName  = name.split(' ')[0];
       const bundleInfo = bundleDetails[selectedBundle.bundle] || bundleDetails[2];
       const orderData = {
         name:  firstName,
         ref:   orderRef,
-        total: String(selectedBundle.price || 429),
+        total: String(selectedBundle.price || 349),
         bundle: bundleInfo.name,
       };
       sessionStorage.setItem('selverine_order', JSON.stringify(orderData));
