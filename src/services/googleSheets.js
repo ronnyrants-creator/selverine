@@ -5,7 +5,9 @@ const { formatDate } = require('../util');
 
 const SHEETS_BASE = 'https://sheets.googleapis.com/v4/spreadsheets';
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
-const HEADER = ['Date', 'Order ID', 'Customer Name', 'Phone', 'City', 'Product', 'Qty', 'Price', 'Status'];
+const HEADER = ['Date', 'Order ID', 'Customer Name', 'Phone', 'City', 'Product', 'Qty', 'Price', 'Status', 'SKU'];
+// Single-product store — SKU is constant. Shown in the orders sheet.
+const SKU = 'huil-anti-chute';
 
 let _auth = null;
 let _disabled = false;
@@ -50,7 +52,7 @@ async function appendOrder(order) {
 
   const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
   const tab = process.env.GOOGLE_SHEETS_TAB || 'Orders';
-  const range = encodeURIComponent(`${tab}!A:I`);
+  const range = encodeURIComponent(`${tab}!A:J`);
 
   const token = await getToken();
 
@@ -75,6 +77,7 @@ async function appendOrder(order) {
     String(order.quantity ?? 1),
     `${order.price ?? 0} ${order.currency || ''}`.trim(),
     order.status || 'Pending',
+    SKU,
   ];
 
   const rows = prependHeader ? [HEADER, orderRow] : [orderRow];
