@@ -177,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const bundleDetails = window.BUNDLE_LABELS || {
     1: { name: 'Découverte',          desc: '1 flacon',               stickyNote: '1 flacon',  submitLabel: 'Commander — 229 DH →', heroLabel: 'Commencer ma routine · 229 DH →' },
     2: { name: 'Routine recommandée', desc: '2 flacons',              stickyNote: '2 flacons', submitLabel: 'Commander — 349 DH →', heroLabel: 'Commencer ma routine · 349 DH →' },
-    3: { name: 'Cure complète',       desc: '3 flacons · garantie',   stickyNote: '3 flacons', submitLabel: 'Commander — 469 DH →', heroLabel: 'Commencer ma routine · 469 DH →' },
   };
 
   function selectBundle(bundle, price) {
@@ -217,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mSubmit)        mSubmit.textContent             = info.submitLabel;
 
     const omGuarantee = document.getElementById('omGuaranteeBadge');
-    if (omGuarantee) omGuarantee.style.display = bundle === 3 ? 'block' : 'none';
+    if (omGuarantee) omGuarantee.style.display = 'block';
   }
 
   // Hero bundle-option clicks
