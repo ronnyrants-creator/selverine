@@ -117,26 +117,50 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(e => {
         const visible = !e.isIntersecting;
         stickyBar.classList.toggle('is-visible', visible);
-        if (whatsappFab) whatsappFab.classList.toggle('is-above-cta', visible);
+        if (whatsappWidget) whatsappWidget.classList.toggle('is-above-cta', visible);
       });
     }, { threshold: 0 }).observe(hero);
   }
 
-  // ── WHATSAPP FLOATING BUTTON ─────────────────────────────────
-  // Fixed bottom-right on every page; shifts above the sticky bar
-  // (via .is-above-cta, toggled above) so it never overlaps the CTA.
+  // ── WHATSAPP FLOATING WIDGET ─────────────────────────────────
+  // Round button + a chat bubble that pops above it after a moment.
+  // Fixed bottom-right on every page; the whole widget shifts above
+  // the sticky bar (via .is-above-cta, toggled above) so it never
+  // overlaps the CTA.
   const isArabicPage = document.documentElement.lang === 'ar';
   const whatsappMessage = isArabicPage
     ? 'مرحبا 👋، عندي سؤال على SELVERINE'
     : 'Bonjour 👋, j\'ai une question sur SELVERINE';
-  const whatsappFab = document.createElement('a');
-  whatsappFab.className = 'whatsapp-fab';
-  whatsappFab.href = `https://wa.me/212780953565?text=${encodeURIComponent(whatsappMessage)}`;
-  whatsappFab.target = '_blank';
-  whatsappFab.rel = 'noopener noreferrer';
-  whatsappFab.setAttribute('aria-label', 'WhatsApp');
-  whatsappFab.innerHTML = '<svg viewBox="0 0 32 32" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M16.004 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.351.615 4.646 1.783 6.667L2.667 29.333l6.83-1.76a13.27 13.27 0 0 0 6.507 1.694h.006c7.36 0 13.333-5.973 13.333-13.333S23.364 2.667 16.004 2.667zm0 24.4h-.005a11.06 11.06 0 0 1-5.636-1.543l-.404-.24-4.052 1.044 1.08-3.948-.264-.406a11.04 11.04 0 0 1-1.69-5.907c0-6.106 4.968-11.073 11.076-11.073 2.958 0 5.738 1.153 7.83 3.246a10.996 10.996 0 0 1 3.242 7.834c-.003 6.106-4.971 11.073-11.077 11.073zm6.077-8.294c-.333-.167-1.966-.97-2.271-1.081-.305-.111-.527-.167-.749.167-.222.333-.86 1.08-1.055 1.303-.194.222-.388.25-.72.083-.333-.167-1.406-.518-2.678-1.652-.99-.883-1.658-1.974-1.852-2.307-.194-.333-.02-.513.146-.679.15-.149.333-.389.5-.583.167-.194.222-.333.333-.556.111-.222.056-.417-.028-.583-.083-.167-.749-1.807-1.026-2.474-.27-.65-.545-.562-.749-.573l-.638-.011c-.222 0-.583.083-.888.417-.305.333-1.164 1.138-1.164 2.776 0 1.638 1.192 3.221 1.358 3.443.167.222 2.347 3.583 5.687 5.024.795.343 1.415.548 1.898.702.797.253 1.523.217 2.096.132.639-.095 1.966-.804 2.243-1.581.278-.777.278-1.443.194-1.581-.083-.139-.305-.222-.638-.389z"/></svg>';
-  document.body.appendChild(whatsappFab);
+  const waHref = `https://wa.me/212780953565?text=${encodeURIComponent(whatsappMessage)}`;
+  const bubbleHTML = isArabicPage
+    ? '👋 عندك سؤال؟ <strong>راسلنا على واتساب</strong>، كنجاوبو بسرعة 💬'
+    : '👋 Une question ? <strong>Écrivez-nous sur WhatsApp</strong> — réponse en quelques minutes 💬';
+  const closeLabel = isArabicPage ? 'إغلاق' : 'Fermer';
+  const waSvg = '<svg viewBox="0 0 32 32" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M16.004 2.667c-7.36 0-13.333 5.973-13.333 13.333 0 2.351.615 4.646 1.783 6.667L2.667 29.333l6.83-1.76a13.27 13.27 0 0 0 6.507 1.694h.006c7.36 0 13.333-5.973 13.333-13.333S23.364 2.667 16.004 2.667zm0 24.4h-.005a11.06 11.06 0 0 1-5.636-1.543l-.404-.24-4.052 1.044 1.08-3.948-.264-.406a11.04 11.04 0 0 1-1.69-5.907c0-6.106 4.968-11.073 11.076-11.073 2.958 0 5.738 1.153 7.83 3.246a10.996 10.996 0 0 1 3.242 7.834c-.003 6.106-4.971 11.073-11.077 11.073zm6.077-8.294c-.333-.167-1.966-.97-2.271-1.081-.305-.111-.527-.167-.749.167-.222.333-.86 1.08-1.055 1.303-.194.222-.388.25-.72.083-.333-.167-1.406-.518-2.678-1.652-.99-.883-1.658-1.974-1.852-2.307-.194-.333-.02-.513.146-.679.15-.149.333-.389.5-.583.167-.194.222-.333.333-.556.111-.222.056-.417-.028-.583-.083-.167-.749-1.807-1.026-2.474-.27-.65-.545-.562-.749-.573l-.638-.011c-.222 0-.583.083-.888.417-.305.333-1.164 1.138-1.164 2.776 0 1.638 1.192 3.221 1.358 3.443.167.222 2.347 3.583 5.687 5.024.795.343 1.415.548 1.898.702.797.253 1.523.217 2.096.132.639-.095 1.966-.804 2.243-1.581.278-.777.278-1.443.194-1.581-.083-.139-.305-.222-.638-.389z"/></svg>';
+
+  const whatsappWidget = document.createElement('div');
+  whatsappWidget.className = 'whatsapp-widget';
+  whatsappWidget.innerHTML =
+    '<a class="whatsapp-bubble" href="' + waHref + '" target="_blank" rel="noopener noreferrer">' +
+      '<span class="whatsapp-bubble__text">' + bubbleHTML + '</span>' +
+    '</a>' +
+    '<button class="whatsapp-bubble__close" type="button" aria-label="' + closeLabel + '">&times;</button>' +
+    '<a class="whatsapp-fab" href="' + waHref + '" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">' + waSvg + '</a>';
+  document.body.appendChild(whatsappWidget);
+
+  // Reveal the bubble a moment after load, unless dismissed this session.
+  let bubbleClosed = false;
+  try { bubbleClosed = sessionStorage.getItem('waBubbleClosed') === '1'; } catch (e) {}
+  if (!bubbleClosed) {
+    setTimeout(() => whatsappWidget.classList.add('bubble-open'), 2000);
+  }
+  const whatsappClose = whatsappWidget.querySelector('.whatsapp-bubble__close');
+  whatsappClose.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    whatsappWidget.classList.remove('bubble-open');
+    try { sessionStorage.setItem('waBubbleClosed', '1'); } catch (err) {}
+  });
 
   // ── STICKY BAR HEIGHT → CSS VAR (mobile only) ──────────────
   function syncStickyBarHeight() {
