@@ -468,6 +468,52 @@ ul, ol { list-style: none; }
   50%, 100% { left: 130%; }
 }
 
+/* ── WHATSAPP FLOATING BUTTON ─────────────────────
+   Fixed to the viewport (follows scroll everywhere), bottom-right.
+   Shifts up above the sticky bar when it's visible so the two
+   never overlap — see .whatsapp-fab.is-above-cta. ── */
+.whatsapp-fab {
+  position: fixed;
+  right: 18px;
+  bottom: 20px;
+  z-index: 998;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #1FAF54;
+  border: 2.5px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.25);
+  transition: bottom 0.3s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+.whatsapp-fab svg { width: 30px; height: 30px; }
+.whatsapp-fab:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3);
+}
+.whatsapp-fab:active { transform: scale(0.96); }
+.whatsapp-fab.is-above-cta { bottom: 96px; }
+
+@keyframes whatsapp-pulse {
+  0%, 100% { box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.25), 0 0 0 0 rgba(31,175,84,0.55); }
+  50%      { box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.25), 0 0 0 11px rgba(31,175,84,0); }
+}
+.whatsapp-fab { animation: whatsapp-pulse 2.6s ease-in-out infinite; }
+.whatsapp-fab:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-fab { animation: none; }
+}
+
+@media (max-width: 768px) {
+  .whatsapp-fab { right: 14px; bottom: 16px; width: 52px; height: 52px; }
+  .whatsapp-fab svg { width: 28px; height: 28px; }
+  .whatsapp-fab.is-above-cta {
+    bottom: calc(var(--mobile-cta-height, 120px) + 14px);
+  }
+}
+
 /* ── HERO ─────────────────────────────────────── */
 .hero__headline--top { display: none; }
 .hero__headline--desktop { display: block; }
